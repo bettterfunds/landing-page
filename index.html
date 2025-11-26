@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bettterFunds - Investment needs. Investors. Intermediaries.</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Import Google Fonts: Montserrat & Roboto & Cairo (for Arabic) -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Roboto', 'sans-serif'],
+                        display: ['Montserrat', 'sans-serif'],
+                        arabic: ['Cairo', 'sans-serif'], // Font for Arabic
+                    },
+                    colors: {
+                        brand: {
+                            blue: '#0000FF',    // Pure Blue (Brand Identity)
+                            dark: '#050511',    // Ultra dark blue
+                            surface: '#F8FAFC', // Light gray/blue surface
+                            text: '#1F2937'     // Standard dark text
+                        }
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Slider Transitions */
+        .slider-slide {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+        .slider-slide.active {
+            display: block;
+            opacity: 1;
+        }
+        
+        /* Reveal on scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Utility: Strong Blue Underline */
+        .blue-underline {
+            position: relative;
+            display: inline-block;
+        }
+        .blue-underline::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 100%;
+            height: 4px;
+            background-color: #0000FF;
+            opacity: 0.2;
+        }
+
+        /* Hero Grid Pattern */
+        .bg-grid {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+            -webkit-mask-image: radial-gradient(circle at center, black 60%, transparent 100%);
+            mask-image: radial-gradient(circle at center, black 60%, transparent 100%);
+        }
+
+        /* RTL Specific Overrides */
+        html[dir="rtl"] {
+            font-family: 'Cairo', sans-serif;
+        }
+        html[dir="rtl"] .font-display, 
+        html[dir="rtl"] .font-sans {
+            font-family: 'Cairo', sans-serif !important;
+        }
+        
+        html[dir="rtl"] .border-l-2 { border-left: 0; border-right-width: 2px; }
+        html[dir="rtl"] .border-l-4 { border-left: 0; border-right-width: 4px; }
+        html[dir="rtl"] .border-t-4 { border-top-width: 4px; } /* Reset */
+        
+        html[dir="rtl"] .pl-4 { padding-left: 0; padding-right: 1rem; }
+        html[dir="rtl"] .pl-12 { padding-left: 0; padding-right: 3rem; }
+        html[dir="rtl"] .ml-6 { margin-left: 0; margin-right: 1.5rem; }
+        html[dir="rtl"] .mr-3 { margin-right: 0; margin-left: 0.75rem; }
+        html[dir="rtl"] .text-left { text-align: right; }
+        html[dir="rtl"] .md\:text-right { text-align: left; } /* For roadmap flip if needed */
+        
+        /* Absolute positioning flips for RTL */
+        html[dir="rtl"] .absolute.-left-\[9px\] { left: auto; right: -9px; }
+        html[dir="rtl"] .absolute.left-0 { left: auto; right: 0; }
+        
+        /* Language Dropdown */
+        .lang-dropdown:hover .lang-menu {
+            display: block;
+        }
+    </style>
+</head>
+<body class="bg-white text-brand-text antialiased font-sans transition-colors duration-300">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 transition-all duration-300 shadow-sm" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex flex-col justify-center cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <span class="text-2xl font-bold font-display text-black tracking-tight leading-none">bettter<span class="text-brand-blue">Funds</span></span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex gap-8 items-center text-sm font-medium font-display">
+                    <a href="#why" class="text-gray-600 hover:text-brand-blue transition" data-i18n="nav_why">Why</a>
+                    <a href="#what" class="text-gray-600 hover:text-brand-blue transition" data-i18n="nav_what">What</a>
+                    <a href="#when" class="text-gray-600 hover:text-brand-blue transition" data-i18n="nav_when">When</a>
+                    <a href="#impact" class="text-gray-600 hover:text-brand-blue transition" data-i18n="nav_impact">Impact</a>
+                    <a href="#team" class="text-gray-600 hover:text-brand-blue transition" data-i18n="nav_team">Team</a>
+                    
+                    <!-- Language Selector -->
+                    <div class="relative lang-dropdown py-4">
+                        <button class="flex items-center gap-1 text-gray-600 hover:text-brand-blue transition">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <span id="current-lang" class="uppercase font-bold text-xs">FR</span>
+                        </button>
+                        <div class="lang-menu absolute top-full right-0 w-24 bg-white shadow-lg rounded-lg border border-gray-100 hidden flex-col z-50">
+                            <button onclick="changeLanguage('fr')" class="block w-full text-left px-4 py-2 hover:bg-gray-50 text-sm">Français</button>
+                            <button onclick="changeLanguage('en')" class="block w-full text-left px-4 py-2 hover:bg-gray-50 text-sm">English</button>
+                            <button onclick="changeLanguage('de')" class="block w-full text-left px-4 py-2 hover:bg-gray-50 text-sm">Deutsch</button>
+                            <button onclick="changeLanguage('ar')" class="block w-full text-right px-4 py-2 hover:bg-gray-50 text-sm font-arabic">العربية</button>
+                        </div>
+                    </div>
+
+                    <!-- Button -->
+                    <a href="#join" class="px-6 py-2.5 rounded shadow-lg bg-brand-blue text-white font-semibold hover:bg-blue-800 transition transform hover:-translate-y-0.5" data-i18n="nav_join">
+                        Rejoindre
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center gap-4">
+                    <!-- Mobile Lang Switcher (Simplified) -->
+                    <button onclick="cycleLanguage()" class="text-brand-blue font-bold text-xs border border-brand-blue rounded px-2 py-1 uppercase" id="mobile-lang-btn">FR</button>
+
+                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-brand-blue focus:outline-none p-2">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full left-0 shadow-xl font-display">
+            <div class="flex flex-col p-6 space-y-4 text-center font-medium">
+                <a href="#why" class="text-gray-600 hover:text-brand-blue py-2" data-i18n="nav_why">Why</a>
+                <a href="#what" class="text-gray-600 hover:text-brand-blue py-2" data-i18n="nav_what">What</a>
+                <a href="#when" class="text-gray-600 hover:text-brand-blue py-2" data-i18n="nav_when">When</a>
+                <a href="#impact" class="text-gray-600 hover:text-brand-blue py-2" data-i18n="nav_impact">Impact</a>
+                <a href="#team" class="text-gray-600 hover:text-brand-blue py-2" data-i18n="nav_team">Team</a>
+                <a href="#join" class="text-brand-blue font-bold py-2 border-t border-gray-100 mt-2" data-i18n="nav_join" title="Join Us"></a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 1. Hero Section -->
+    <section class="relative h-screen min-h-[600px] flex items-center justify-center bg-brand-surface text-brand-text overflow-hidden">
+        
+        <div class="absolute inset-0 z-0 bg-grid opacity-60"></div>
+        <div class="absolute top-20 right-0 w-[600px] h-[600px] bg-blue-100 rounded-full opacity-40 blur-[100px] animate-float pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gray-200 rounded-full opacity-40 blur-[80px] pointer-events-none"></div>
+
+        <div class="relative z-10 max-w-6xl mx-auto px-4 text-center">
+            
+            <!-- Slider Container -->
+            <div id="hero-slider" class="min-h-[300px] flex flex-col justify-center">
+                
+                <!-- Slide 1 -->
+                <div class="slider-slide active">
+                    <span class="font-display font-bold tracking-[0.2em] text-gray-500 uppercase text-xs mb-6 block" data-i18n="hero_badge_future">The Future of Funding</span>
+                    <h1 class="font-display text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 text-slate-900">
+                        <span data-i18n="hero_title_1">Ne cherchez plus les fonds.</span><br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-blue-800" data-i18n="hero_title_2">Trouvez les bons partenaires.</span>
+                    </h1>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="slider-slide">
+                    <span class="font-display font-bold tracking-[0.2em] text-gray-500 uppercase text-xs mb-6 block" data-i18n="hero_badge_promise">Notre Promesse</span>
+                    <h1 class="font-display text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 text-slate-900">
+                        <span data-i18n="hero_promise_1">Connecter l'Afrique aux</span><br>
+                        <span class="blue-underline text-brand-blue" data-i18n="hero_promise_2">Fonds Thématiques Mondiaux.</span>
+                    </h1>
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="slider-slide">
+                    <span class="font-display font-bold tracking-[0.2em] text-gray-500 uppercase text-xs mb-6 block" data-i18n="hero_badge_essence">L'Essence</span>
+                    <h1 class="font-display text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 text-slate-900">
+                        Investment needs. Investors.<br>
+                        <span class="text-brand-blue">Intermediaries.</span>
+                    </h1>
+                </div>
+
+            </div>
+
+            <!-- Static Subtitle & CTA -->
+            <div class="mt-8 reveal active" style="transition-delay: 0.2s;">
+                <p class="font-sans text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mb-10 font-light leading-relaxed" data-i18n="hero_subtitle">
+                    bettterFunds construit l'infrastructure numérique de confiance qui aligne les besoins d'investissement, les investisseurs et les intermédiaires.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#join" class="px-8 py-4 rounded shadow-lg bg-brand-blue text-white font-display font-bold hover:bg-blue-800 hover:shadow-xl transition-all text-lg transform hover:-translate-y-1" data-i18n="cta_main">
+                        Rejoindre la liste d'attente
+                    </a>
+                    <a href="#why" class="px-8 py-4 rounded border border-gray-300 text-gray-700 font-display font-medium hover:bg-white hover:border-gray-400 transition-all text-lg flex items-center justify-center gap-2">
+                        <span data-i18n="cta_secondary">Découvrir</span>
+                        <svg class="w-4 h-4 rtl:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+                    </a>
+                </div>
+                <p class="mt-8 text-xs text-gray-400 font-display font-semibold uppercase tracking-widest" data-i18n="launch_date">Lancement Beta 2027</p>
+            </div>
+            
+            <!-- Slider Indicators -->
+            <div class="flex justify-center gap-3 mt-12">
+                <button onclick="setSlide(0)" class="slider-dot w-2 h-2 rounded-full bg-brand-blue transition-all duration-300 hover:scale-125"></button>
+                <button onclick="setSlide(1)" class="slider-dot w-2 h-2 rounded-full bg-gray-300 transition-all duration-300 hover:bg-brand-blue hover:scale-125"></button>
+                <button onclick="setSlide(2)" class="slider-dot w-2 h-2 rounded-full bg-gray-300 transition-all duration-300 hover:bg-brand-blue hover:scale-125"></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. Why (Context) -->
+    <section id="why" class="py-24 bg-white reveal">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="font-display text-sm font-bold text-brand-blue uppercase tracking-widest mb-3" data-i18n="why_badge">Le Contexte</h2>
+                    <h3 class="font-display text-3xl md:text-4xl font-bold text-black mb-6 leading-tight" data-i18n="why_title">Le gap du financement</h3>
+                    <div class="font-sans prose prose-lg text-gray-600">
+                        <p class="mb-4" data-i18n="why_text_1">
+                            L'Afrique est le continent de la croissance verte, mais le capital peine à irriguer les projets. Pourquoi ? 
+                            Parce que l'information est fragmentée.
+                        </p>
+                        <p class="mb-4" data-i18n="why_text_2">
+                            D'un côté, des <strong>fonds thématiques</strong> cherchent désespérément des projets éligibles. 
+                            De l'autre, des entrepreneurs ignorent l'existence de ces fonds ou échouent sur les critères d'éligibilité.
+                        </p>
+                        <!-- Quote Block -->
+                        <div class="pl-4 border-l-4 border-brand-blue mt-6">
+                            <p class="font-medium text-black italic" data-i18n="why_quote">
+                                "Le fossé n'est pas un manque d'argent, c'est un manque de structure."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative bg-brand-surface rounded-xl p-8 border border-gray-100 shadow-sm">
+                    <!-- Conceptual Visual -->
+                    <div class="space-y-8">
+                        <div>
+                            <div class="flex items-end justify-between mb-2 font-display">
+                                <span class="text-sm text-gray-500 font-semibold" data-i18n="stats_funds">Funds Available (Global)</span>
+                            </div>
+                            <div class="w-full bg-gray-200 h-2">
+                                <div class="bg-black h-2" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex items-end justify-between mb-2 font-display">
+                                <span class="text-sm text-gray-500 font-semibold" data-i18n="stats_deployed">Deployed Capital (Africa)</span>
+                                <span class="text-sm font-bold text-brand-blue" data-i18n="stats_gap">The Gap</span>
+                            </div>
+                            <div class="w-full bg-gray-200 h-2">
+                                <div class="bg-brand-blue h-2" style="width: 10%"></div>
+                            </div>
+                        </div>
+                        <div class="pt-4 border-t border-gray-200">
+                             <span class="text-xs text-gray-400 uppercase tracking-widest font-display">bettterFunds Analysis</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. What (Vision) -->
+    <section id="what" class="py-24 bg-brand-surface reveal border-y border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="font-display text-sm font-bold text-brand-blue uppercase tracking-widest mb-3" data-i18n="what_badge">Notre Solution</h2>
+            <h3 class="font-display text-3xl md:text-4xl font-bold text-black mb-16" data-i18n="what_title">Ce que nous bâtissons</h3>
+
+            <div class="grid md:grid-cols-3 gap-10">
+                <!-- Card 1 -->
+                <div class="group bg-white p-10 shadow-sm hover:shadow-xl transition-all duration-300 border-t-4 border-transparent hover:border-brand-blue">
+                    <div class="w-12 h-12 bg-blue-50 rounded flex items-center justify-center mx-auto mb-6 text-brand-blue">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    </div>
+                    <h4 class="font-display text-xl font-bold text-black mb-3" data-i18n="card_1_title">Identification</h4>
+                    <p class="font-sans text-gray-600 leading-relaxed" data-i18n="card_1_text">Une cartographie exhaustive des fonds thématiques et de leurs critères précis.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="group bg-white p-10 shadow-sm hover:shadow-xl transition-all duration-300 border-t-4 border-transparent hover:border-brand-blue">
+                    <div class="w-12 h-12 bg-blue-50 rounded flex items-center justify-center mx-auto mb-6 text-brand-blue">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    </div>
+                    <h4 class="font-display text-xl font-bold text-black mb-3" data-i18n="card_2_title">Matching</h4>
+                    <p class="font-sans text-gray-600 leading-relaxed" data-i18n="card_2_text">Un moteur intelligent qui connecte instantanément le bon projet au bon fonds.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="group bg-white p-10 shadow-sm hover:shadow-xl transition-all duration-300 border-t-4 border-transparent hover:border-brand-blue">
+                    <div class="w-12 h-12 bg-blue-50 rounded flex items-center justify-center mx-auto mb-6 text-brand-blue">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                    </div>
+                    <h4 class="font-display text-xl font-bold text-black mb-3" data-i18n="card_3_title">Préparation</h4>
+                    <p class="font-sans text-gray-600 leading-relaxed" data-i18n="card_3_text">L'intégration des agences intermédiaires pour rendre les projets prêts à l'investissement.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. When (Roadmap) -->
+    <section id="when" class="py-24 bg-white reveal">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-display text-sm font-bold text-brand-blue uppercase tracking-widest mb-3" data-i18n="roadmap_badge">Roadmap</h2>
+                <h3 class="font-display text-3xl font-bold text-black" data-i18n="roadmap_title">État d'avancement</h3>
+            </div>
+
+            <div class="relative border-l-2 border-gray-100 ml-6 space-y-12">
+                <!-- Item 1 -->
+                <div class="relative pl-12 group">
+                    <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-black border-4 border-white shadow transition-transform group-hover:scale-125"></div>
+                    <h4 class="font-display text-lg font-bold text-black" data-i18n="step_1_title">Conception</h4>
+                    <span class="font-sans text-xs font-semibold text-gray-400 uppercase tracking-wide block mb-2" data-i18n="step_1_date">Fin 2025</span>
+                    <p class="font-sans text-gray-600" data-i18n="step_1_text">Définition du modèle technique, architecture de la base de données et acquisition.</p>
+                </div>
+
+                <!-- Item 2 (Active) -->
+                <div class="relative pl-12 group">
+                    <!-- Brand Blue Indicator -->
+                    <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-brand-blue border-4 border-white shadow ring-4 ring-blue-50 transition-transform group-hover:scale-125"></div>
+                    <h4 class="font-display text-lg font-bold text-brand-blue" data-i18n="step_2_title">Structuration & R&D</h4>
+                    <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-brand-blue text-white uppercase tracking-wide mb-2" data-i18n="step_2_date">En cours - 2026</span>
+                    <p class="font-sans text-gray-600" data-i18n="step_2_text">Enregistrement légal à Abidjan. Construction du "Data Lake" des fonds thématiques.</p>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="relative pl-12 opacity-50">
+                    <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-gray-200 border-4 border-white"></div>
+                    <h4 class="font-display text-lg font-bold text-gray-500" data-i18n="step_3_title">Lancement Beta</h4>
+                    <span class="font-sans text-xs font-semibold text-gray-400 uppercase tracking-wide block mb-2" data-i18n="step_3_date">2027</span>
+                    <p class="font-sans text-gray-600" data-i18n="step_3_text">Ouverture de la plateforme aux premiers investisseurs et porteurs de projets.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Impact -->
+    <section id="impact" class="py-24 bg-brand-dark text-white reveal border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-16">
+                <div class="md:w-1/2">
+                    <h2 class="font-display text-sm font-bold text-brand-blue uppercase tracking-widest mb-3" data-i18n="impact_badge">Impact</h2>
+                    <h3 class="font-display text-3xl md:text-4xl font-bold mb-6" data-i18n="impact_title">Pourquoi c'est important</h3>
+                    <p class="font-sans text-gray-400 text-lg mb-6 leading-relaxed" data-i18n="impact_text">
+                        Chaque dollar investi via bettterFunds ne génère pas seulement du rendement financier, il active des solutions concrètes pour le climat, la santé et l'économie locale.
+                    </p>
+                    <ul class="font-sans space-y-4 text-gray-300">
+                        <li class="flex items-start">
+                            <span class="text-brand-blue mr-3 font-bold">✓</span>
+                            <span data-i18n="impact_list_1">Démocratiser l'accès à la finance internationale.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-brand-blue mr-3 font-bold">✓</span>
+                            <span data-i18n="impact_list_2">Standardiser la qualité des projets africains.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-brand-blue mr-3 font-bold">✓</span>
+                            <span data-i18n="impact_list_3">Accélérer la transition écologique du continent.</span>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Boxed Stats -->
+                <div class="md:w-1/2 bg-white/5 p-8 rounded-xl border border-white/10 backdrop-blur-sm">
+                    <div class="text-center mb-8">
+                        <span class="font-display block text-5xl font-bold text-brand-blue mb-2">100%</span>
+                        <span class="font-display text-gray-400 text-xs uppercase tracking-widest font-semibold" data-i18n="stats_focus">Focus Thématique</span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-8 pt-8 border-t border-white/10 font-display">
+                        <div class="text-center">
+                            <span class="block text-2xl font-bold text-white mb-1" data-i18n="stats_sectors_val">Agri & Climat</span>
+                            <span class="text-gray-400 text-xs" data-i18n="stats_sectors_key">Secteurs Clés</span>
+                        </div>
+                        <div class="text-center">
+                            <span class="block text-2xl font-bold text-white mb-1" data-i18n="stats_targets_val">PME & ETI</span>
+                            <span class="text-gray-400 text-xs" data-i18n="stats_targets_key">Cibles</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Team -->
+    <section id="team" class="py-24 bg-white reveal">
+        <div class="max-w-5xl mx-auto px-4 text-center">
+            <h2 class="font-display text-sm font-bold text-brand-blue uppercase tracking-widest mb-3" data-i18n="team_badge">L'Équipe</h2>
+            <h3 class="font-display text-3xl font-bold text-black mb-10" data-i18n="team_title">Qui porte le projet ?</h3>
+            
+            <p class="font-sans text-xl text-gray-600 mb-16 max-w-2xl mx-auto" data-i18n="team_text">
+                Un collectif d'entrepreneurs et d'experts tech basés à Abidjan, unis par une mission commune.
+            </p>
+
+            <div class="flex flex-wrap justify-center items-start gap-12 font-display">
+                
+                <!-- 1. CEO (Left) -->
+                <div class="flex flex-col items-center group">
+                    <div class="w-40 h-40 rounded-full bg-brand-surface border-2 border-brand-surface group-hover:border-brand-blue transition-colors duration-300 flex items-center justify-center mb-4 overflow-hidden relative shadow-sm">
+                        <span class="text-3xl font-bold text-gray-300 group-hover:text-brand-blue transition-colors">CEO</span>
+                    </div>
+                    <h4 class="text-lg font-bold text-black">Founder</h4>
+                    <span class="text-sm font-medium text-gray-500 uppercase tracking-wider">CEO / Finance</span>
+                </div>
+
+                <!-- 2. COO (Center) -->
+                <div class="flex flex-col items-center group">
+                    <div class="w-40 h-40 rounded-full bg-brand-surface border-2 border-brand-surface group-hover:border-brand-blue transition-colors duration-300 flex items-center justify-center mb-4 overflow-hidden relative shadow-sm">
+                        <span class="text-3xl font-bold text-gray-300 group-hover:text-brand-blue transition-colors">COO</span>
+                    </div>
+                    <h4 class="text-lg font-bold text-black">Co-Founder</h4>
+                    <span class="text-sm font-medium text-gray-500 uppercase tracking-wider">COO / Ops</span>
+                </div>
+
+                <!-- 3. CTO (Right) -->
+                <div class="flex flex-col items-center group">
+                    <div class="w-40 h-40 rounded-full bg-brand-surface border-2 border-brand-surface group-hover:border-brand-blue transition-colors duration-300 flex items-center justify-center mb-4 overflow-hidden relative shadow-sm">
+                        <span class="text-3xl font-bold text-gray-300 group-hover:text-brand-blue transition-colors">CTO</span>
+                    </div>
+                    <h4 class="text-lg font-bold text-black">Co-Founder</h4>
+                    <span class="text-sm font-medium text-gray-500 uppercase tracking-wider">CTO / Tech</span>
+                </div>
+
+            </div>
+            
+            <!-- Partners Logos -->
+            <div class="mt-20 pt-10 border-t border-gray-100">
+                <p class="font-display text-xs text-gray-400 uppercase tracking-widest mb-8 font-semibold" data-i18n="partners_badge">Soutenu par</p>
+                <div class="flex flex-wrap justify-center gap-10 opacity-40 grayscale hover:grayscale-0 transition-all duration-500 font-display">
+                    <span class="text-xl font-bold text-black">FINTECH HUB</span>
+                    <span class="text-xl font-bold text-black">IMPACT ALLIANCE</span>
+                    <span class="text-xl font-bold text-black">AFRICA TECH</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Join Us -->
+    <section id="join" class="py-24 bg-brand-surface border-t border-gray-200 reveal">
+        <div class="max-w-3xl mx-auto px-4 text-center">
+            <h2 class="font-display text-3xl md:text-4xl font-bold text-black mb-6" data-i18n="join_title">Rejoignez le mouvement</h2>
+            <p class="font-sans text-gray-600 mb-10 text-lg" data-i18n="join_text">
+                Soyez les premiers informés de nos avancées et participez à la phase de test.
+            </p>
+
+            <form class="max-w-md mx-auto flex flex-col sm:flex-row gap-3 mb-12" onsubmit="handleEmailSignup(event)" id="signup-form">
+                <input type="email" placeholder="Email" class="flex-1 px-5 py-4 bg-white border border-gray-300 rounded focus:outline-none focus:border-brand-blue text-black shadow-sm font-sans" id="signup-email" required>
+                <button type="submit" class="px-8 py-4 bg-brand-blue text-white font-bold rounded hover:bg-blue-800 transition shadow-md font-display" data-i18n="join_btn">S'inscrire</button>
+            </form>
+
+            <div class="grid md:grid-cols-2 gap-8 text-left max-w-2xl mx-auto font-sans">
+                <div>
+                    <h4 class="font-display font-bold text-black mb-2" data-i18n="investor_title">Investisseurs / Fonds</h4>
+                    <p class="text-sm text-gray-500 mb-2" data-i18n="investor_text">Vous cherchez du deal flow qualifié ?</p>
+                    <a href="mailto:invest@bettterfunds.com" class="text-brand-blue text-sm font-semibold hover:underline">invest@bettterfunds.com</a>
+                </div>
+                <div>
+                    <h4 class="font-display font-bold text-black mb-2" data-i18n="partner_title">Partenaires / Presse</h4>
+                    <p class="text-sm text-gray-500 mb-2" data-i18n="partner_text">Construisons ensemble.</p>
+                    <a href="mailto:contact@bettterfunds.com" class="text-brand-blue text-sm font-semibold hover:underline">contact@bettterfunds.com</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-dark text-gray-400 py-12 text-sm border-t border-gray-800 font-sans">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="mb-4 md:mb-0 font-display">
+                <span class="text-white font-bold text-lg tracking-tight">bettter<span class="text-brand-blue">Funds</span></span>
+                <span class="mx-2 text-gray-600">|</span>
+                <span>Abidjan, Côte d'Ivoire.</span>
+            </div>
+            <div class="flex space-x-6">
+                <a href="#" class="hover:text-white transition" data-i18n="footer_legal">Mentions Légales</a>
+                <a href="#" class="hover:text-white transition" data-i18n="footer_privacy">Confidentialité</a>
+                <a href="#" class="hover:text-white transition">LinkedIn</a>
+            </div>
+            <div>
+                &copy; 2025 bettterFunds Inc.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // --- TRANSLATIONS CONFIGURATION ---
+        const translations = {
+            fr: {
+                // Nav
+                nav_why: "Pourquoi", nav_what: "Solution", nav_when: "Agenda", nav_impact: "Impact", nav_team: "Équipe", nav_join: "Rejoindre",
+                // Hero
+                hero_badge_future: "L'AVENIR DU FINANCEMENT",
+                hero_title_1: "Ne cherchez plus les fonds.",
+                hero_title_2: "Trouvez les bons partenaires.",
+                hero_badge_promise: "NOTRE PROMESSE",
+                hero_promise_1: "Connecter l'Afrique aux",
+                hero_promise_2: "Fonds Thématiques Mondiaux.",
+                hero_badge_essence: "L'ESSENCE",
+                hero_subtitle: "bettterFunds construit l'infrastructure numérique de confiance qui aligne les besoins d'investissement, les investisseurs et les intermédiaires.",
+                cta_main: "Rejoindre la liste d'attente",
+                cta_secondary: "Découvrir",
+                launch_date: "LANCEMENT BETA 2027",
+                // Why
+                why_badge: "LE CONTEXTE",
+                why_title: "Le gap du financement",
+                why_text_1: "L'Afrique est le continent de la croissance verte, mais le capital peine à irriguer les projets. Pourquoi ? Parce que l'information est fragmentée.",
+                why_text_2: "D'un côté, des fonds thématiques cherchent désespérément des projets éligibles. De l'autre, des entrepreneurs ignorent l'existence de ces fonds.",
+                why_quote: "\"Le fossé n'est pas un manque d'argent, c'est un manque de structure.\"",
+                stats_funds: "Fonds Disponibles (Global)", stats_deployed: "Capital Déployé (Afrique)", stats_gap: "Le Fossé",
+                // What
+                what_badge: "NOTRE SOLUTION",
+                what_title: "Ce que nous bâtissons",
+                card_1_title: "Identification", card_1_text: "Une cartographie exhaustive des fonds thématiques (Climat, Agri, Genre) et de leurs critères précis.",
+                card_2_title: "Matching", card_2_text: "Un moteur intelligent qui connecte instantanément le bon projet au bon fonds, sans friction.",
+                card_3_title: "Préparation", card_3_text: "L'intégration des agences intermédiaires pour rendre les projets \"investor-ready\" avant le contact.",
+                // When
+                roadmap_badge: "ROADMAP", roadmap_title: "État d'avancement",
+                step_1_title: "Conception", step_1_date: "FIN 2025", step_1_text: "Définition du modèle technique, architecture de la base de données et acquisition.",
+                step_2_title: "Structuration & R&D", step_2_date: "EN COURS - 2026", step_2_text: "Enregistrement légal à Abidjan. Construction du \"Data Lake\" des fonds thématiques.",
+                step_3_title: "Lancement Beta", step_3_date: "2027", step_3_text: "Ouverture de la plateforme aux premiers investisseurs et porteurs de projets.",
+                // Impact
+                impact_badge: "IMPACT", impact_title: "Pourquoi c'est important",
+                impact_text: "Chaque dollar investi via bettterFunds ne génère pas seulement du rendement financier, il active des solutions concrètes pour le climat.",
+                impact_list_1: "Démocratiser l'accès à la finance internationale.",
+                impact_list_2: "Standardiser la qualité des projets africains.",
+                impact_list_3: "Accélérer la transition écologique du continent.",
+                stats_focus: "Focus Thématique", stats_sectors_val: "Agri & Climat", stats_sectors_key: "Secteurs Clés", stats_targets_val: "PME & ETI", stats_targets_key: "Cibles",
+                // Team
+                team_badge: "L'ÉQUIPE", team_title: "Qui porte le projet ?",
+                team_text: "Un collectif d'entrepreneurs et d'experts tech basés à Abidjan, unis par une mission commune.",
+                partners_badge: "SOUTENU PAR",
+                // Join
+                join_title: "Rejoignez le mouvement", join_text: "Soyez les premiers informés de nos avancées et participez à la phase de test.",
+                join_btn: "S'inscrire",
+                investor_title: "Investisseurs / Fonds", investor_text: "Vous cherchez du deal flow qualifié ?",
+                partner_title: "Partenaires / Presse", partner_text: "Construisons ensemble.",
+                // Footer
+                footer_legal: "Mentions Légales", footer_privacy: "Confidentialité"
+            },
+            en: {
+                nav_why: "Why", nav_what: "Solution", nav_when: "Roadmap", nav_impact: "Impact", nav_team: "Team", nav_join: "Join Us",
+                hero_badge_future: "THE FUTURE OF FUNDING",
+                hero_title_1: "Stop searching for funds.",
+                hero_title_2: "Find the right partners.",
+                hero_badge_promise: "OUR PROMISE",
+                hero_promise_1: "Connecting Africa to",
+                hero_promise_2: "Global Thematic Funds.",
+                hero_badge_essence: "THE ESSENCE",
+                hero_subtitle: "bettterFunds builds the trusted digital infrastructure aligning investment needs, investors, and intermediaries.",
+                cta_main: "Join the Waitlist",
+                cta_secondary: "Learn More",
+                launch_date: "BETA LAUNCH 2027",
+                why_badge: "THE CONTEXT",
+                why_title: "The Funding Gap",
+                why_text_1: "Africa is the continent of green growth, yet capital struggles to reach projects. Why? Because information is fragmented.",
+                why_text_2: "On one side, thematic funds desperately seek eligible projects. On the other, entrepreneurs are unaware of these funds.",
+                why_quote: "\"The gap isn't a lack of money, it's a lack of structure.\"",
+                stats_funds: "Funds Available (Global)", stats_deployed: "Deployed Capital (Africa)", stats_gap: "The Gap",
+                what_badge: "OUR SOLUTION",
+                what_title: "What We Are Building",
+                card_1_title: "Identification", card_1_text: "Comprehensive mapping of thematic funds (Climate, Agri, Gender) and their precise criteria.",
+                card_2_title: "Matching", card_2_text: "An intelligent engine that instantly connects the right project to the right fund, without friction.",
+                card_3_title: "Readiness", card_3_text: "Integrating intermediary agencies to make projects 'investor-ready' before contact.",
+                roadmap_badge: "ROADMAP", roadmap_title: "Progress Status",
+                step_1_title: "Concept", step_1_date: "LATE 2025", step_1_text: "Defining technical model, database architecture, and asset acquisition.",
+                step_2_title: "Structuring & R&D", step_2_date: "ONGOING - 2026", step_2_text: "Legal registration in Abidjan. Building the 'Data Lake' of thematic funds.",
+                step_3_title: "Beta Launch", step_3_date: "2027", step_3_text: "Platform opening to initial selected investors and project owners.",
+                impact_badge: "IMPACT", impact_title: "Why It Matters",
+                impact_text: "Every dollar invested via bettterFunds generates not just financial return, but activates concrete solutions for climate and economy.",
+                impact_list_1: "Democratize access to international finance.",
+                impact_list_2: "Standardize the quality of African projects.",
+                impact_list_3: "Accelerate the continent's ecological transition.",
+                stats_focus: "Thematic Focus", stats_sectors_val: "Agri & Climate", stats_sectors_key: "Key Sectors", stats_targets_val: "SMEs", stats_targets_key: "Targets",
+                team_badge: "THE TEAM", team_title: "Who is behind this?",
+                team_text: "A collective of entrepreneurs and tech experts based in Abidjan, united by a common mission.",
+                partners_badge: "SUPPORTED BY",
+                join_title: "Join the Movement", join_text: "Be the first to know about our progress and participate in the testing phase.",
+                join_btn: "Sign Up",
+                investor_title: "Investors / Funds", investor_text: "Looking for qualified deal flow?",
+                partner_title: "Partners / Press", partner_text: "Let's build together.",
+                footer_legal: "Legal Notice", footer_privacy: "Privacy Policy"
+            },
+            de: {
+                nav_why: "Warum", nav_what: "Lösung", nav_when: "Zeitplan", nav_impact: "Einfluss", nav_team: "Team", nav_join: "Beitreten",
+                hero_badge_future: "DIE ZUKUNFT DER FINANZIERUNG",
+                hero_title_1: "Suchen Sie kein Geld mehr.",
+                hero_title_2: "Finden Sie die richtigen Partner.",
+                hero_badge_promise: "UNSER VERSPRECHEN",
+                hero_promise_1: "Afrika verbinden mit",
+                hero_promise_2: "Globalen Themenfonds.",
+                hero_badge_essence: "DIE ESSENZ",
+                hero_subtitle: "bettterFunds baut die vertrauenswürdige digitale Infrastruktur, die Investitionsbedarf, Investoren und Vermittler aufeinander abstimmt.",
+                cta_main: "Auf die Warteliste",
+                cta_secondary: "Mehr erfahren",
+                launch_date: "BETA START 2027",
+                why_badge: "DER KONTEXT",
+                why_title: "Die Finanzierungslücke",
+                why_text_1: "Afrika ist der Kontinent des grünen Wachstums, doch Kapital erreicht die Projekte kaum. Warum? Weil Informationen fragmentiert sind.",
+                why_text_2: "Einerseits suchen Themenfonds verzweifelt nach förderfähigen Projekten. Andererseits kennen Unternehmer diese Fonds nicht.",
+                why_quote: "\"Die Lücke ist kein Geldmangel, es ist ein Strukturmangel.\"",
+                stats_funds: "Verfügbare Fonds (Global)", stats_deployed: "Eingesetztes Kapital (Afrika)", stats_gap: "Die Lücke",
+                what_badge: "UNSERE LÖSUNG",
+                what_title: "Was wir aufbauen",
+                card_1_title: "Identifikation", card_1_text: "Umfassende Kartierung von Themenfonds (Klima, Agri, Gender) und deren genauen Kriterien.",
+                card_2_title: "Matching", card_2_text: "Eine intelligente Engine, die sofort das richtige Projekt mit dem richtigen Fonds verbindet.",
+                card_3_title: "Vorbereitung", card_3_text: "Integration von Vermittlungsagenturen, um Projekte vor dem Kontakt 'investorenreif' zu machen.",
+                roadmap_badge: "ROADMAP", roadmap_title: "Fortschrittsstatus",
+                step_1_title: "Konzept", step_1_date: "ENDE 2025", step_1_text: "Definition des technischen Modells, Datenbankarchitektur und Akquise.",
+                step_2_title: "Strukturierung & F&E", step_2_date: "LAUFEND - 2026", step_2_text: "Rechtliche Registrierung in Abidjan. Aufbau des 'Data Lake' der Themenfonds.",
+                step_3_title: "Beta Start", step_3_date: "2027", step_3_text: "Öffnung der Plattform für erste ausgewählte Investoren und Projektträger.",
+                impact_badge: "EINFLUSS", impact_title: "Warum es wichtig ist",
+                impact_text: "Jeder Dollar, der über bettterFunds investiert wird, generiert nicht nur finanzielle Rendite, sondern aktiviert konkrete Lösungen.",
+                impact_list_1: "Zugang zu internationaler Finanzierung demokratisieren.",
+                impact_list_2: "Qualität afrikanischer Projekte standardisieren.",
+                impact_list_3: "Ökologischen Wandel des Kontinents beschleunigen.",
+                stats_focus: "Thematischer Fokus", stats_sectors_val: "Agri & Klima", stats_sectors_key: "Schlüsselsektoren", stats_targets_val: "KMU", stats_targets_key: "Ziele",
+                team_badge: "DAS TEAM", team_title: "Wer steckt dahinter?",
+                team_text: "Ein Kollektiv von Unternehmern und Tech-Experten mit Sitz in Abidjan, vereint durch eine gemeinsame Mission.",
+                partners_badge: "UNTERSTÜTZT VON",
+                join_title: "Schließen Sie sich an", join_text: "Seien Sie die Ersten, die von unseren Fortschritten erfahren und an der Testphase teilnehmen.",
+                join_btn: "Anmelden",
+                investor_title: "Investoren / Fonds", investor_text: "Suchen Sie qualifizierten Dealflow?",
+                partner_title: "Partner / Presse", partner_text: "Lassen Sie uns gemeinsam bauen.",
+                footer_legal: "Impressum", footer_privacy: "Datenschutz"
+            },
+            ar: {
+                nav_why: "لماذا", nav_what: "الحل", nav_when: "الخارطة", nav_impact: "الأثر", nav_team: "الفريق", nav_join: "انضم إلينا",
+                hero_badge_future: "مستقبل التمويل",
+                hero_title_1: "توقف عن البحث عن التمويل.",
+                hero_title_2: "اعثر على الشركاء المناسبين.",
+                hero_badge_promise: "وعدنا",
+                hero_promise_1: "ربط أفريقيا بـ",
+                hero_promise_2: "الصناديق العالمية المتخصصة.",
+                hero_badge_essence: "الجوهر",
+                hero_subtitle: "تقوم bettterFunds ببناء البنية التحتية الرقمية الموثوقة التي توائم بين احتياجات الاستثمار والمستثمرين والوسطاء.",
+                cta_main: "انضم إلى قائمة الانتظار",
+                cta_secondary: "اكتشف المزيد",
+                launch_date: "إطلاق النسخة التجريبية 2027",
+                why_badge: "السياق",
+                why_title: "فجوة التمويل",
+                why_text_1: "أفريقيا هي قارة النمو الأخضر، لكن رأس المال يكافح للوصول إلى المشاريع. لماذا؟ لأن المعلومات مجزأة.",
+                why_text_2: "من ناحية، تبحث الصناديق المتخصصة بشدة عن مشاريع مؤهلة. ومن ناحية أخرى، يجهل رواد الأعمال وجود هذه الصناديق.",
+                why_quote: "\"الفجوة ليست نقصًا في المال، بل هي نقص في الهيكلة.\"",
+                stats_funds: "الأموال المتاحة (عالمياً)", stats_deployed: "رأس المال المستثمر (أفريقيا)", stats_gap: "الفجوة",
+                what_badge: "حلنا",
+                what_title: "ما نقوم ببنائه",
+                card_1_title: "تحديد الهوية", card_1_text: "خريطة شاملة للصناديق المتخصصة (المناخ، الزراعة، الجنسين) ومعاييرها الدقيقة.",
+                card_2_title: "المطابقة", card_2_text: "محرك ذكي يربط المشروع المناسب بالصندوق المناسب فوراً وبدون تعقيدات.",
+                card_3_title: "التحضير", card_3_text: "دمج الوكالات الوسيطة لجعل المشاريع 'جاهزة للاستثمار' قبل الاتصال.",
+                roadmap_badge: "خارطة الطريق", roadmap_title: "حالة التقدم",
+                step_1_title: "المفهوم", step_1_date: "أواخر 2025", step_1_text: "تعريف النموذج التقني، وهندسة قاعدة البيانات والاستحواذ.",
+                step_2_title: "الهيكلة والبحث", step_2_date: "جاري - 2026", step_2_text: "التسجيل القانوني في أبيدجان. بناء 'بحيرة البيانات' للصناديق المتخصصة.",
+                step_3_title: "الإطلاق التجريبي", step_3_date: "2027", step_3_text: "فتح المنصة للمستثمرين الأوائل وأصحاب المشاريع المختارين.",
+                impact_badge: "الأثر", impact_title: "لماذا هذا مهم",
+                impact_text: "كل دولار يتم استثماره عبر bettterFunds لا يولد عائداً مالياً فحسب، بل يفعل حلولاً ملموسة للمناخ.",
+                impact_list_1: "إضفاء الطابع الديمقراطي على الوصول للتمويل الدولي.",
+                impact_list_2: "توحيد جودة المشاريع الأفريقية.",
+                impact_list_3: "تسريع التحول البيئي للقارة.",
+                stats_focus: "التركيز الموضوعي", stats_sectors_val: "الزراعة والمناخ", stats_sectors_key: "القطاعات الرئيسية", stats_targets_val: "الشركات الصغيرة والمتوسطة", stats_targets_key: "الأهداف",
+                team_badge: "الفريق", team_title: "من يقف وراء هذا؟",
+                team_text: "مجموعة من رواد الأعمال وخبراء التكنولوجيا في أبيدجان، يجمعهم مهمة مشتركة.",
+                partners_badge: "بدعم من",
+                join_title: "انضم للحركة", join_text: "كن أول من يعرف عن تقدمنا وشارك في مرحلة الاختبار.",
+                join_btn: "سجل الآن",
+                investor_title: "مستثمرون / صناديق", investor_text: "هل تبحث عن تدفق صفقات مؤهل؟",
+                partner_title: "شركاء / صحافة", partner_text: "لنبدأ البناء معاً.",
+                footer_legal: "إشعار قانوني", footer_privacy: "الخصوصية"
+            }
+        };
+
+        function changeLanguage(lang) {
+            // 1. Update Text
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    // Preserve HTML tags inside if any (simple replace)
+                    if (el.children.length > 0 && key.includes('hero_title')) {
+                         // Special handling for hero title split could be better but innerText is safer for now
+                         el.innerText = translations[lang][key]; 
+                    } else {
+                        el.innerText = translations[lang][key];
+                    }
+                }
+            });
+
+            // 2. Handle Direction (RTL/LTR)
+            const html = document.documentElement;
+            if (lang === 'ar') {
+                html.setAttribute('dir', 'rtl');
+            } else {
+                html.setAttribute('dir', 'ltr');
+            }
+
+            // 3. Update active state in UI
+            document.getElementById('current-lang').innerText = lang.toUpperCase();
+            
+            // Mobile button update
+            const mobileBtn = document.getElementById('mobile-lang-btn');
+            if(mobileBtn) mobileBtn.innerText = lang.toUpperCase();
+        }
+
+        // Simple Mobile Cycle
+        const langs = ['fr', 'en', 'de', 'ar'];
+        let currentLangIdx = 0;
+        function cycleLanguage() {
+            currentLangIdx = (currentLangIdx + 1) % langs.length;
+            changeLanguage(langs[currentLangIdx]);
+        }
+
+        // --- EXISTING JS ---
+        // Email Signup Handler
+        function handleEmailSignup(event) {
+            event.preventDefault();
+            const emailInput = document.getElementById('signup-email');
+            const email = emailInput.value.trim();
+            
+            // Basic email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Veuillez entrer une adresse email valide.');
+                return;
+            }
+            
+            // TODO: Replace with actual backend API call
+            alert('Merci ! Vous avez été ajouté à la liste d\'attente.');
+            emailInput.value = '';
+        }
+
+        // 1. Mobile Menu
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        if(btn) {
+            btn.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+            });
+        }
+
+        // 2. Slider
+        let slideIndex = 0;
+        let slideTimeout;
+        const slides = document.getElementsByClassName("slider-slide");
+        const dots = document.getElementsByClassName("slider-dot");
+
+        function showSlides() {
+            if(slides.length === 0) return;
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].classList.remove("active");
+                if(dots[i]) dots[i].style.backgroundColor = "#CBD5E1"; 
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {slideIndex = 1}
+            slides[slideIndex-1].classList.add("active");
+            if(dots[slideIndex-1]) dots[slideIndex-1].style.backgroundColor = "#0000FF"; 
+            slideTimeout = setTimeout(showSlides, 5000); 
+        }
+
+        function setSlide(n) {
+            slideIndex = n;
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].classList.remove("active");
+                if(dots[i]) dots[i].style.backgroundColor = "#CBD5E1";
+            }
+            slides[slideIndex].classList.add("active");
+            if(dots[slideIndex]) dots[slideIndex].style.backgroundColor = "#0000FF";
+            // Reset auto-rotation timer when manually selecting a slide
+            clearTimeout(slideTimeout);
+            slideTimeout = setTimeout(showSlides, 5000);
+        }
+
+        showSlides();
+
+        // 3. Scroll Reveal
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach((section) => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
