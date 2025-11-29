@@ -20,7 +20,7 @@
                     colors: {
                         brand: {
                             blue: '#0000FF',    // Pure Blue (Brand Identity)
-                            dark: '#03224c',    // Ultra dark blue
+                            dark: '#050511',    // Ultra dark blue
                             surface: '#F8FAFC', // Light gray/blue surface
                             text: '#1F2937'     // Standard dark text
                         }
@@ -85,10 +85,10 @@
         /* Hero Grid Pattern */
         .bg-grid {
             background-size: 40px 40px;
-            background-image: linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
-                              linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
-            -webkit-mask-image: radial-gradient(circle at center, black 60%, transparent 100%);
+            background-image: linear-gradient(to right, rgba(0, 0, 255, 0.05) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(0, 0, 255, 0.05) 1px, transparent 1px);
             mask-image: radial-gradient(circle at center, black 60%, transparent 100%);
+            -webkit-mask-image: radial-gradient(circle at center, black 60%, transparent 100%);
         }
 
         /* RTL Specific Overrides */
@@ -119,6 +119,11 @@
         .lang-dropdown:hover .lang-menu {
             display: block;
         }
+
+        /* Logo Ligature Trick (Optional polish) */
+        .logo-ligature {
+            letter-spacing: -2px; /* Pull 't's closer together */
+        }
     </style>
 </head>
 <body class="bg-white text-brand-text antialiased font-sans transition-colors duration-300">
@@ -129,7 +134,7 @@
             <div class="flex justify-between h-20 items-center">
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex flex-col justify-center cursor-pointer" onclick="window.scrollTo(0,0)">
-                    <span class="text-2xl font-bold font-display text-black tracking-tight leading-none">bettter<span class="text-brand-blue">funds</span></span>
+                    <span class="text-2xl font-bold font-display text-black tracking-tight leading-none">be<span class="logo-ligature">ttt</span>er<span class="text-brand-blue">Funds</span></span>
                 </div>
                 
                 <!-- Desktop Menu -->
@@ -182,17 +187,18 @@
                 <a href="#when" class="text-gray-600 hover:text-brand-blue py-2" data-i18n="nav_when">When</a>
                 <a href="#impact" class="text-gray-600 hover:text-brand-blue py-2" data-i18n="nav_impact">Impact</a>
                 <a href="#team" class="text-gray-600 hover:text-brand-blue py-2" data-i18n="nav_team">Team</a>
-                <a href="#join" class="text-brand-blue font-bold py-2 border-t border-gray-100 mt-2" data-i18n="nav_join" title="Join Us"></a>
+                <a href="#join" class="text-brand-blue font-bold py-2 border-t border-gray-100 mt-2" data-i18n="nav_join">Join Us</a>
             </div>
         </div>
     </nav>
 
-    <!-- 1. Hero Section -->
-    <section class="relative h-screen min-h-[600px] flex items-center justify-center bg-brand-surface text-brand-text overflow-hidden">
+    <!-- 1. Hero Section (WHITE BG / BLUE TEXT) -->
+    <section class="relative h-screen min-h-[600px] flex items-center justify-center bg-white text-brand-text overflow-hidden">
         
-        <div class="absolute inset-0 z-0 bg-grid opacity-60"></div>
-        <div class="absolute top-20 right-0 w-[600px] h-[600px] bg-blue-100 rounded-full opacity-40 blur-[100px] animate-float pointer-events-none"></div>
-        <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gray-200 rounded-full opacity-40 blur-[80px] pointer-events-none"></div>
+        <div class="absolute inset-0 z-0 bg-grid opacity-30"></div>
+        <!-- Adjusted blobs to be more subtle on white -->
+        <div class="absolute top-20 right-0 w-[600px] h-[600px] bg-blue-50 rounded-full opacity-60 blur-[100px] animate-float pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gray-50 rounded-full opacity-60 blur-[80px] pointer-events-none"></div>
 
         <div class="relative z-10 max-w-6xl mx-auto px-4 text-center">
             
@@ -201,17 +207,17 @@
                 
                 <!-- Slide 1 -->
                 <div class="slider-slide active">
-                    <span class="font-display font-bold tracking-[0.2em] text-gray-500 uppercase text-xs mb-6 block" data-i18n="hero_badge_future">The Future of Funding</span>
-                    <h1 class="font-display text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 text-slate-900">
+                    <span class="font-display font-bold tracking-[0.2em] text-gray-400 uppercase text-xs mb-6 block" data-i18n="hero_badge_future">The Future of Funding</span>
+                    <h1 class="font-display text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 text-brand-blue">
                         <span data-i18n="hero_title_1">Ne cherchez plus les fonds.</span><br>
-                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-blue-800" data-i18n="hero_title_2">Trouvez les bons partenaires.</span>
+                        <span class="text-black" data-i18n="hero_title_2">Trouvez les bons partenaires.</span>
                     </h1>
                 </div>
 
                 <!-- Slide 2 -->
                 <div class="slider-slide">
-                    <span class="font-display font-bold tracking-[0.2em] text-gray-500 uppercase text-xs mb-6 block" data-i18n="hero_badge_promise">Notre Promesse</span>
-                    <h1 class="font-display text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 text-slate-900">
+                    <span class="font-display font-bold tracking-[0.2em] text-gray-400 uppercase text-xs mb-6 block" data-i18n="hero_badge_promise">Notre Promesse</span>
+                    <h1 class="font-display text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 text-black">
                         <span data-i18n="hero_promise_1">Connecter l'Afrique aux</span><br>
                         <span class="blue-underline text-brand-blue" data-i18n="hero_promise_2">Fonds Thématiques Mondiaux.</span>
                     </h1>
@@ -219,8 +225,8 @@
 
                 <!-- Slide 3 -->
                 <div class="slider-slide">
-                    <span class="font-display font-bold tracking-[0.2em] text-gray-500 uppercase text-xs mb-6 block" data-i18n="hero_badge_essence">L'Essence</span>
-                    <h1 class="font-display text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 text-slate-900">
+                    <span class="font-display font-bold tracking-[0.2em] text-gray-400 uppercase text-xs mb-6 block" data-i18n="hero_badge_essence">L'Essence</span>
+                    <h1 class="font-display text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 text-black">
                         Investment needs. Investors.<br>
                         <span class="text-brand-blue">Intermediaries.</span>
                     </h1>
@@ -237,12 +243,12 @@
                     <a href="#join" class="px-8 py-4 rounded shadow-lg bg-brand-blue text-white font-display font-bold hover:bg-blue-800 hover:shadow-xl transition-all text-lg transform hover:-translate-y-1" data-i18n="cta_main">
                         Rejoindre la liste d'attente
                     </a>
-                    <a href="#why" class="px-8 py-4 rounded border border-gray-300 text-gray-700 font-display font-medium hover:bg-white hover:border-gray-400 transition-all text-lg flex items-center justify-center gap-2">
+                    <a href="#why" class="px-8 py-4 rounded border border-gray-300 text-brand-blue font-display font-medium hover:bg-gray-50 transition-all text-lg flex items-center justify-center gap-2">
                         <span data-i18n="cta_secondary">Découvrir</span>
                         <svg class="w-4 h-4 rtl:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
                     </a>
                 </div>
-                <p class="mt-8 text-xs text-gray-400 font-display font-semibold uppercase tracking-widest" data-i18n="launch_date">Lancement Beta 2027</p>
+                <p class="mt-8 text-xs text-gray-300 font-display font-semibold uppercase tracking-widest" data-i18n="launch_date">Lancement Beta 2027</p>
             </div>
             
             <!-- Slider Indicators -->
@@ -254,14 +260,14 @@
         </div>
     </section>
 
-    <!-- 2. Why (Context) -->
-    <section id="why" class="py-24 bg-white reveal">
+    <!-- 2. Why (BLUE BG / WHITE TEXT) -->
+    <section id="why" class="py-24 bg-brand-blue text-white reveal">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid md:grid-cols-2 gap-16 items-center">
                 <div>
-                    <h2 class="font-display text-sm font-bold text-brand-blue uppercase tracking-widest mb-3" data-i18n="why_badge">Le Contexte</h2>
-                    <h3 class="font-display text-3xl md:text-4xl font-bold text-black mb-6 leading-tight" data-i18n="why_title">Le gap du financement</h3>
-                    <div class="font-sans prose prose-lg text-gray-600">
+                    <h2 class="font-display text-sm font-bold text-blue-200 uppercase tracking-widest mb-3" data-i18n="why_badge">Le Contexte</h2>
+                    <h3 class="font-display text-3xl md:text-4xl font-bold text-white mb-6 leading-tight" data-i18n="why_title">Le gap du financement</h3>
+                    <div class="font-sans prose prose-lg text-blue-50">
                         <p class="mb-4" data-i18n="why_text_1">
                             L'Afrique est le continent de la croissance verte, mais le capital peine à irriguer les projets. Pourquoi ? 
                             Parce que l'information est fragmentée.
@@ -271,21 +277,22 @@
                             De l'autre, des entrepreneurs ignorent l'existence de ces fonds ou échouent sur les critères d'éligibilité.
                         </p>
                         <!-- Quote Block -->
-                        <div class="pl-4 border-l-4 border-brand-blue mt-6">
-                            <p class="font-medium text-black italic" data-i18n="why_quote">
+                        <div class="pl-4 border-l-4 border-white mt-6">
+                            <p class="font-medium text-white italic" data-i18n="why_quote">
                                 "Le fossé n'est pas un manque d'argent, c'est un manque de structure."
                             </p>
                         </div>
                     </div>
                 </div>
-                <div class="relative bg-brand-surface rounded-xl p-8 border border-gray-100 shadow-sm">
+                <!-- Box with stats -->
+                <div class="relative bg-white rounded-xl p-8 border border-white/20 shadow-lg text-brand-text">
                     <!-- Conceptual Visual -->
                     <div class="space-y-8">
                         <div>
                             <div class="flex items-end justify-between mb-2 font-display">
                                 <span class="text-sm text-gray-500 font-semibold" data-i18n="stats_funds">Funds Available (Global)</span>
                             </div>
-                            <div class="w-full bg-gray-200 h-2">
+                            <div class="w-full bg-gray-100 h-2">
                                 <div class="bg-black h-2" style="width: 90%"></div>
                             </div>
                         </div>
@@ -295,11 +302,11 @@
                                 <span class="text-sm text-gray-500 font-semibold" data-i18n="stats_deployed">Deployed Capital (Africa)</span>
                                 <span class="text-sm font-bold text-brand-blue" data-i18n="stats_gap">The Gap</span>
                             </div>
-                            <div class="w-full bg-gray-200 h-2">
+                            <div class="w-full bg-gray-100 h-2">
                                 <div class="bg-brand-blue h-2" style="width: 10%"></div>
                             </div>
                         </div>
-                        <div class="pt-4 border-t border-gray-200">
+                        <div class="pt-4 border-t border-gray-100">
                              <span class="text-xs text-gray-400 uppercase tracking-widest font-display">bettterFunds Analysis</span>
                         </div>
                     </div>
@@ -308,91 +315,91 @@
         </div>
     </section>
 
-    <!-- 3. What (Vision) -->
-    <section id="what" class="py-24 bg-brand-surface reveal border-y border-gray-200">
+    <!-- 3. What (WHITE BG / BLUE TEXT) -->
+    <section id="what" class="py-24 bg-white reveal">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="font-display text-sm font-bold text-brand-blue uppercase tracking-widest mb-3" data-i18n="what_badge">Notre Solution</h2>
-            <h3 class="font-display text-3xl md:text-4xl font-bold text-black mb-16" data-i18n="what_title">Ce que nous bâtissons</h3>
+            <h2 class="font-display text-sm font-bold text-gray-400 uppercase tracking-widest mb-3" data-i18n="what_badge">Notre Solution</h2>
+            <h3 class="font-display text-3xl md:text-4xl font-bold text-brand-blue mb-16" data-i18n="what_title">Ce que nous bâtissons</h3>
 
             <div class="grid md:grid-cols-3 gap-10">
                 <!-- Card 1 -->
-                <div class="group bg-white p-10 shadow-sm hover:shadow-xl transition-all duration-300 border-t-4 border-transparent hover:border-brand-blue">
-                    <div class="w-12 h-12 bg-blue-50 rounded flex items-center justify-center mx-auto mb-6 text-brand-blue">
+                <div class="group bg-slate-50 p-10 shadow-sm hover:shadow-xl transition-all duration-300 border-t-4 border-transparent hover:border-brand-blue">
+                    <div class="w-12 h-12 bg-white border border-gray-100 rounded flex items-center justify-center mx-auto mb-6 text-brand-blue shadow-sm">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                     </div>
-                    <h4 class="font-display text-xl font-bold text-black mb-3" data-i18n="card_1_title">Identification</h4>
+                    <h4 class="font-display text-xl font-bold text-brand-blue mb-3" data-i18n="card_1_title">Identification</h4>
                     <p class="font-sans text-gray-600 leading-relaxed" data-i18n="card_1_text">Une cartographie exhaustive des fonds thématiques et de leurs critères précis.</p>
                 </div>
 
                 <!-- Card 2 -->
-                <div class="group bg-white p-10 shadow-sm hover:shadow-xl transition-all duration-300 border-t-4 border-transparent hover:border-brand-blue">
-                    <div class="w-12 h-12 bg-blue-50 rounded flex items-center justify-center mx-auto mb-6 text-brand-blue">
+                <div class="group bg-slate-50 p-10 shadow-sm hover:shadow-xl transition-all duration-300 border-t-4 border-transparent hover:border-brand-blue">
+                    <div class="w-12 h-12 bg-white border border-gray-100 rounded flex items-center justify-center mx-auto mb-6 text-brand-blue shadow-sm">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                     </div>
-                    <h4 class="font-display text-xl font-bold text-black mb-3" data-i18n="card_2_title">Matching</h4>
+                    <h4 class="font-display text-xl font-bold text-brand-blue mb-3" data-i18n="card_2_title">Matching</h4>
                     <p class="font-sans text-gray-600 leading-relaxed" data-i18n="card_2_text">Un moteur intelligent qui connecte instantanément le bon projet au bon fonds.</p>
                 </div>
 
                 <!-- Card 3 -->
-                <div class="group bg-white p-10 shadow-sm hover:shadow-xl transition-all duration-300 border-t-4 border-transparent hover:border-brand-blue">
-                    <div class="w-12 h-12 bg-blue-50 rounded flex items-center justify-center mx-auto mb-6 text-brand-blue">
+                <div class="group bg-slate-50 p-10 shadow-sm hover:shadow-xl transition-all duration-300 border-t-4 border-transparent hover:border-brand-blue">
+                    <div class="w-12 h-12 bg-white border border-gray-100 rounded flex items-center justify-center mx-auto mb-6 text-brand-blue shadow-sm">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
                     </div>
-                    <h4 class="font-display text-xl font-bold text-black mb-3" data-i18n="card_3_title">Préparation</h4>
+                    <h4 class="font-display text-xl font-bold text-brand-blue mb-3" data-i18n="card_3_title">Préparation</h4>
                     <p class="font-sans text-gray-600 leading-relaxed" data-i18n="card_3_text">L'intégration des agences intermédiaires pour rendre les projets prêts à l'investissement.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 4. When (Roadmap) -->
-    <section id="when" class="py-24 bg-white reveal">
+    <!-- 4. When (BLUE BG / WHITE TEXT) -->
+    <section id="when" class="py-24 bg-brand-blue reveal">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="font-display text-sm font-bold text-brand-blue uppercase tracking-widest mb-3" data-i18n="roadmap_badge">Roadmap</h2>
-                <h3 class="font-display text-3xl font-bold text-black" data-i18n="roadmap_title">État d'avancement</h3>
+                <h2 class="font-display text-sm font-bold text-blue-200 uppercase tracking-widest mb-3" data-i18n="roadmap_badge">Roadmap</h2>
+                <h3 class="font-display text-3xl font-bold text-white" data-i18n="roadmap_title">État d'avancement</h3>
             </div>
 
-            <div class="relative border-l-2 border-gray-100 ml-6 space-y-12">
+            <div class="relative border-l-2 border-white/20 ml-6 space-y-12">
                 <!-- Item 1 -->
                 <div class="relative pl-12 group">
-                    <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-black border-4 border-white shadow transition-transform group-hover:scale-125"></div>
-                    <h4 class="font-display text-lg font-bold text-black" data-i18n="step_1_title">Conception</h4>
-                    <span class="font-sans text-xs font-semibold text-gray-400 uppercase tracking-wide block mb-2" data-i18n="step_1_date">Fin 2025</span>
-                    <p class="font-sans text-gray-600" data-i18n="step_1_text">Définition du modèle technique, architecture de la base de données et acquisition.</p>
+                    <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-white border-4 border-brand-blue shadow transition-transform group-hover:scale-125"></div>
+                    <h4 class="font-display text-lg font-bold text-white" data-i18n="step_1_title">Conception</h4>
+                    <span class="font-sans text-xs font-semibold text-blue-300 uppercase tracking-wide block mb-2" data-i18n="step_1_date">Fin 2025</span>
+                    <p class="font-sans text-blue-100" data-i18n="step_1_text">Définition du modèle technique, architecture de la base de données et acquisition.</p>
                 </div>
 
                 <!-- Item 2 (Active) -->
                 <div class="relative pl-12 group">
-                    <!-- Brand Blue Indicator -->
-                    <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-brand-blue border-4 border-white shadow ring-4 ring-blue-50 transition-transform group-hover:scale-125"></div>
-                    <h4 class="font-display text-lg font-bold text-brand-blue" data-i18n="step_2_title">Structuration & R&D</h4>
-                    <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-brand-blue text-white uppercase tracking-wide mb-2" data-i18n="step_2_date">En cours - 2026</span>
-                    <p class="font-sans text-gray-600" data-i18n="step_2_text">Enregistrement légal à Abidjan. Construction du "Data Lake" des fonds thématiques.</p>
+                    <!-- White Indicator on Blue -->
+                    <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-white border-4 border-brand-blue shadow ring-4 ring-white/20 transition-transform group-hover:scale-125"></div>
+                    <h4 class="font-display text-lg font-bold text-white" data-i18n="step_2_title">Structuration & R&D</h4>
+                    <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-white text-brand-blue uppercase tracking-wide mb-2" data-i18n="step_2_date">En cours - 2026</span>
+                    <p class="font-sans text-blue-100" data-i18n="step_2_text">Enregistrement légal à Abidjan. Construction du "Data Lake" des fonds thématiques.</p>
                 </div>
 
                 <!-- Item 3 -->
                 <div class="relative pl-12 opacity-50">
-                    <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-gray-200 border-4 border-white"></div>
-                    <h4 class="font-display text-lg font-bold text-gray-500" data-i18n="step_3_title">Lancement Beta</h4>
-                    <span class="font-sans text-xs font-semibold text-gray-400 uppercase tracking-wide block mb-2" data-i18n="step_3_date">2027</span>
-                    <p class="font-sans text-gray-600" data-i18n="step_3_text">Ouverture de la plateforme aux premiers investisseurs et porteurs de projets.</p>
+                    <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-white/50 border-4 border-brand-blue"></div>
+                    <h4 class="font-display text-lg font-bold text-blue-300" data-i18n="step_3_title">Lancement Beta</h4>
+                    <span class="font-sans text-xs font-semibold text-blue-400 uppercase tracking-wide block mb-2" data-i18n="step_3_date">2027</span>
+                    <p class="font-sans text-blue-200" data-i18n="step_3_text">Ouverture de la plateforme aux premiers investisseurs et porteurs de projets.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 5. Impact -->
-    <section id="impact" class="py-24 bg-brand-dark text-white reveal border-t border-gray-800">
+    <!-- 5. Impact (WHITE BG / BLUE TEXT) -->
+    <section id="impact" class="py-24 bg-white reveal">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row justify-between items-center gap-16">
                 <div class="md:w-1/2">
-                    <h2 class="font-display text-sm font-bold text-brand-blue uppercase tracking-widest mb-3" data-i18n="impact_badge">Impact</h2>
-                    <h3 class="font-display text-3xl md:text-4xl font-bold mb-6" data-i18n="impact_title">Pourquoi c'est important</h3>
-                    <p class="font-sans text-gray-400 text-lg mb-6 leading-relaxed" data-i18n="impact_text">
+                    <h2 class="font-display text-sm font-bold text-gray-400 uppercase tracking-widest mb-3" data-i18n="impact_badge">Impact</h2>
+                    <h3 class="font-display text-3xl md:text-4xl font-bold mb-6 text-brand-blue" data-i18n="impact_title">Pourquoi c'est important</h3>
+                    <p class="font-sans text-gray-600 text-lg mb-6 leading-relaxed" data-i18n="impact_text">
                         Chaque dollar investi via bettterFunds ne génère pas seulement du rendement financier, il active des solutions concrètes pour le climat, la santé et l'économie locale.
                     </p>
-                    <ul class="font-sans space-y-4 text-gray-300">
+                    <ul class="font-sans space-y-4 text-gray-700">
                         <li class="flex items-start">
                             <span class="text-brand-blue mr-3 font-bold">✓</span>
                             <span data-i18n="impact_list_1">Démocratiser l'accès à la finance internationale.</span>
@@ -407,20 +414,20 @@
                         </li>
                     </ul>
                 </div>
-                <!-- Boxed Stats -->
-                <div class="md:w-1/2 bg-white/5 p-8 rounded-xl border border-white/10 backdrop-blur-sm">
+                <!-- Boxed Stats (Inverted for contrast: Blue box on White BG) -->
+                <div class="md:w-1/2 bg-brand-blue p-8 rounded-xl shadow-2xl">
                     <div class="text-center mb-8">
-                        <span class="font-display block text-5xl font-bold text-brand-blue mb-2">100%</span>
-                        <span class="font-display text-gray-400 text-xs uppercase tracking-widest font-semibold" data-i18n="stats_focus">Focus Thématique</span>
+                        <span class="font-display block text-5xl font-bold text-white mb-2">100%</span>
+                        <span class="font-display text-blue-200 text-xs uppercase tracking-widest font-semibold" data-i18n="stats_focus">Focus Thématique</span>
                     </div>
-                    <div class="grid grid-cols-2 gap-8 pt-8 border-t border-white/10 font-display">
+                    <div class="grid grid-cols-2 gap-8 pt-8 border-t border-white/20 font-display">
                         <div class="text-center">
                             <span class="block text-2xl font-bold text-white mb-1" data-i18n="stats_sectors_val">Agri & Climat</span>
-                            <span class="text-gray-400 text-xs" data-i18n="stats_sectors_key">Secteurs Clés</span>
+                            <span class="text-blue-200 text-xs" data-i18n="stats_sectors_key">Secteurs Clés</span>
                         </div>
                         <div class="text-center">
                             <span class="block text-2xl font-bold text-white mb-1" data-i18n="stats_targets_val">PME & ETI</span>
-                            <span class="text-gray-400 text-xs" data-i18n="stats_targets_key">Cibles</span>
+                            <span class="text-blue-200 text-xs" data-i18n="stats_targets_key">Cibles</span>
                         </div>
                     </div>
                 </div>
@@ -428,13 +435,13 @@
         </div>
     </section>
 
-    <!-- 6. Team -->
-    <section id="team" class="py-24 bg-white reveal">
+    <!-- 6. Team (BLUE BG / WHITE TEXT) -->
+    <section id="team" class="py-24 bg-brand-blue reveal">
         <div class="max-w-5xl mx-auto px-4 text-center">
-            <h2 class="font-display text-sm font-bold text-brand-blue uppercase tracking-widest mb-3" data-i18n="team_badge">L'Équipe</h2>
-            <h3 class="font-display text-3xl font-bold text-black mb-10" data-i18n="team_title">Qui porte le projet ?</h3>
+            <h2 class="font-display text-sm font-bold text-blue-200 uppercase tracking-widest mb-3" data-i18n="team_badge">L'Équipe</h2>
+            <h3 class="font-display text-3xl font-bold text-white mb-10" data-i18n="team_title">Qui porte le projet ?</h3>
             
-            <p class="font-sans text-xl text-gray-600 mb-16 max-w-2xl mx-auto" data-i18n="team_text">
+            <p class="font-sans text-xl text-blue-100 mb-16 max-w-2xl mx-auto" data-i18n="team_text">
                 Un collectif d'entrepreneurs et d'experts tech basés à Abidjan, unis par une mission commune.
             </p>
 
@@ -442,66 +449,66 @@
                 
                 <!-- 1. CEO (Left) -->
                 <div class="flex flex-col items-center group">
-                    <div class="w-40 h-40 rounded-full bg-brand-surface border-2 border-brand-surface group-hover:border-brand-blue transition-colors duration-300 flex items-center justify-center mb-4 overflow-hidden relative shadow-sm">
-                        <span class="text-3xl font-bold text-gray-300 group-hover:text-brand-blue transition-colors">CEO</span>
+                    <div class="w-40 h-40 rounded-full bg-white border-2 border-white group-hover:scale-105 transition-all duration-300 flex items-center justify-center mb-4 overflow-hidden relative shadow-lg">
+                        <span class="text-3xl font-bold text-brand-blue">CEO</span>
                     </div>
-                    <h4 class="text-lg font-bold text-black">Founder</h4>
-                    <span class="text-sm font-medium text-gray-500 uppercase tracking-wider">CEO / Finance</span>
+                    <h4 class="text-lg font-bold text-white">Founder</h4>
+                    <span class="text-sm font-medium text-blue-200 uppercase tracking-wider">CEO / Finance</span>
                 </div>
 
                 <!-- 2. COO (Center) -->
                 <div class="flex flex-col items-center group">
-                    <div class="w-40 h-40 rounded-full bg-brand-surface border-2 border-brand-surface group-hover:border-brand-blue transition-colors duration-300 flex items-center justify-center mb-4 overflow-hidden relative shadow-sm">
-                        <span class="text-3xl font-bold text-gray-300 group-hover:text-brand-blue transition-colors">COO</span>
+                    <div class="w-40 h-40 rounded-full bg-white border-2 border-white group-hover:scale-105 transition-all duration-300 flex items-center justify-center mb-4 overflow-hidden relative shadow-lg">
+                        <span class="text-3xl font-bold text-brand-blue">COO</span>
                     </div>
-                    <h4 class="text-lg font-bold text-black">Co-Founder</h4>
-                    <span class="text-sm font-medium text-gray-500 uppercase tracking-wider">COO / Ops</span>
+                    <h4 class="text-lg font-bold text-white">Co-Founder</h4>
+                    <span class="text-sm font-medium text-blue-200 uppercase tracking-wider">COO / Ops</span>
                 </div>
 
                 <!-- 3. CTO (Right) -->
                 <div class="flex flex-col items-center group">
-                    <div class="w-40 h-40 rounded-full bg-brand-surface border-2 border-brand-surface group-hover:border-brand-blue transition-colors duration-300 flex items-center justify-center mb-4 overflow-hidden relative shadow-sm">
-                        <span class="text-3xl font-bold text-gray-300 group-hover:text-brand-blue transition-colors">CTO</span>
+                    <div class="w-40 h-40 rounded-full bg-white border-2 border-white group-hover:scale-105 transition-all duration-300 flex items-center justify-center mb-4 overflow-hidden relative shadow-lg">
+                        <span class="text-3xl font-bold text-brand-blue">CTO</span>
                     </div>
-                    <h4 class="text-lg font-bold text-black">Co-Founder</h4>
-                    <span class="text-sm font-medium text-gray-500 uppercase tracking-wider">CTO / Tech</span>
+                    <h4 class="text-lg font-bold text-white">Co-Founder</h4>
+                    <span class="text-sm font-medium text-blue-200 uppercase tracking-wider">CTO / Tech</span>
                 </div>
 
             </div>
             
             <!-- Partners Logos -->
-            <div class="mt-20 pt-10 border-t border-gray-100">
-                <p class="font-display text-xs text-gray-400 uppercase tracking-widest mb-8 font-semibold" data-i18n="partners_badge">Soutenu par</p>
-                <div class="flex flex-wrap justify-center gap-10 opacity-40 grayscale hover:grayscale-0 transition-all duration-500 font-display">
-                    <span class="text-xl font-bold text-black">FINTECH HUB</span>
-                    <span class="text-xl font-bold text-black">IMPACT ALLIANCE</span>
-                    <span class="text-xl font-bold text-black">AFRICA TECH</span>
+            <div class="mt-20 pt-10 border-t border-white/20">
+                <p class="font-display text-xs text-blue-300 uppercase tracking-widest mb-8 font-semibold" data-i18n="partners_badge">Soutenu par</p>
+                <div class="flex flex-wrap justify-center gap-10 opacity-60 hover:opacity-100 transition-all duration-500 font-display text-white">
+                    <span class="text-xl font-bold">FINTECH HUB</span>
+                    <span class="text-xl font-bold">IMPACT ALLIANCE</span>
+                    <span class="text-xl font-bold">AFRICA TECH</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 7. Join Us -->
-    <section id="join" class="py-24 bg-brand-surface border-t border-gray-200 reveal">
+    <!-- 7. Join Us (WHITE BG / BLUE TEXT) -->
+    <section id="join" class="py-24 bg-white reveal">
         <div class="max-w-3xl mx-auto px-4 text-center">
-            <h2 class="font-display text-3xl md:text-4xl font-bold text-black mb-6" data-i18n="join_title">Rejoignez le mouvement</h2>
+            <h2 class="font-display text-3xl md:text-4xl font-bold text-brand-blue mb-6" data-i18n="join_title">Rejoignez le mouvement</h2>
             <p class="font-sans text-gray-600 mb-10 text-lg" data-i18n="join_text">
                 Soyez les premiers informés de nos avancées et participez à la phase de test.
             </p>
 
-            <form class="max-w-md mx-auto flex flex-col sm:flex-row gap-3 mb-12" onsubmit="handleEmailSignup(event)" id="signup-form">
-                <input type="email" placeholder="Email" class="flex-1 px-5 py-4 bg-white border border-gray-300 rounded focus:outline-none focus:border-brand-blue text-black shadow-sm font-sans" id="signup-email" required>
-                <button type="submit" class="px-8 py-4 bg-brand-blue text-white font-bold rounded hover:bg-blue-800 transition shadow-md font-display" data-i18n="join_btn">S'inscrire</button>
+            <form class="max-w-md mx-auto flex flex-col sm:flex-row gap-3 mb-12" onsubmit="event.preventDefault(); alert('Merci !');">
+                <input type="email" placeholder="Email" class="flex-1 px-5 py-4 bg-gray-50 border border-gray-200 rounded focus:outline-none focus:border-brand-blue text-black shadow-sm font-sans">
+                <button class="px-8 py-4 bg-brand-blue text-white font-bold rounded hover:bg-blue-800 transition shadow-md font-display" data-i18n="join_btn">S'inscrire</button>
             </form>
 
             <div class="grid md:grid-cols-2 gap-8 text-left max-w-2xl mx-auto font-sans">
                 <div>
-                    <h4 class="font-display font-bold text-black mb-2" data-i18n="investor_title">Investisseurs / Fonds</h4>
+                    <h4 class="font-display font-bold text-brand-blue mb-2" data-i18n="investor_title">Investisseurs / Fonds</h4>
                     <p class="text-sm text-gray-500 mb-2" data-i18n="investor_text">Vous cherchez du deal flow qualifié ?</p>
                     <a href="mailto:invest@bettterfunds.com" class="text-brand-blue text-sm font-semibold hover:underline">invest@bettterfunds.com</a>
                 </div>
                 <div>
-                    <h4 class="font-display font-bold text-black mb-2" data-i18n="partner_title">Partenaires / Presse</h4>
+                    <h4 class="font-display font-bold text-brand-blue mb-2" data-i18n="partner_title">Partenaires / Presse</h4>
                     <p class="text-sm text-gray-500 mb-2" data-i18n="partner_text">Construisons ensemble.</p>
                     <a href="mailto:contact@bettterfunds.com" class="text-brand-blue text-sm font-semibold hover:underline">contact@bettterfunds.com</a>
                 </div>
@@ -510,19 +517,19 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-brand-dark text-gray-400 py-12 text-sm border-t border-gray-800 font-sans">
+    <footer class="bg-gray-50 text-brand-blue py-12 text-sm border-t border-gray-200 font-sans">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
             <div class="mb-4 md:mb-0 font-display">
-                <span class="text-white font-bold text-lg tracking-tight">bettter<span class="text-brand-blue">Funds</span></span>
-                <span class="mx-2 text-gray-600">|</span>
+                <span class="text-black font-bold text-lg tracking-tight">be<span class="logo-ligature">ttt</span>er<span class="text-brand-blue">Funds</span></span>
+                <span class="mx-2 text-gray-300">|</span>
                 <span>Abidjan, Côte d'Ivoire.</span>
             </div>
             <div class="flex space-x-6">
-                <a href="#" class="hover:text-white transition" data-i18n="footer_legal">Mentions Légales</a>
-                <a href="#" class="hover:text-white transition" data-i18n="footer_privacy">Confidentialité</a>
-                <a href="#" class="hover:text-white transition">LinkedIn</a>
+                <a href="#" class="hover:text-black transition" data-i18n="footer_legal">Mentions Légales</a>
+                <a href="#" class="hover:text-black transition" data-i18n="footer_privacy">Confidentialité</a>
+                <a href="#" class="hover:text-black transition">LinkedIn</a>
             </div>
-            <div>
+            <div class="text-gray-500">
                 &copy; 2025 bettterFunds Inc.
             </div>
         </div>
@@ -756,24 +763,6 @@
         }
 
         // --- EXISTING JS ---
-        // Email Signup Handler
-        function handleEmailSignup(event) {
-            event.preventDefault();
-            const emailInput = document.getElementById('signup-email');
-            const email = emailInput.value.trim();
-            
-            // Basic email validation
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                alert('Veuillez entrer une adresse email valide.');
-                return;
-            }
-            
-            // TODO: Replace with actual backend API call
-            alert('Merci ! Vous avez été ajouté à la liste d\'attente.');
-            emailInput.value = '';
-        }
-
         // 1. Mobile Menu
         const btn = document.getElementById('mobile-menu-btn');
         const menu = document.getElementById('mobile-menu');
@@ -785,7 +774,6 @@
 
         // 2. Slider
         let slideIndex = 0;
-        let slideTimeout;
         const slides = document.getElementsByClassName("slider-slide");
         const dots = document.getElementsByClassName("slider-dot");
 
@@ -799,7 +787,7 @@
             if (slideIndex > slides.length) {slideIndex = 1}
             slides[slideIndex-1].classList.add("active");
             if(dots[slideIndex-1]) dots[slideIndex-1].style.backgroundColor = "#0000FF"; 
-            slideTimeout = setTimeout(showSlides, 5000); 
+            setTimeout(showSlides, 5000); 
         }
 
         function setSlide(n) {
@@ -810,9 +798,6 @@
             }
             slides[slideIndex].classList.add("active");
             if(dots[slideIndex]) dots[slideIndex].style.backgroundColor = "#0000FF";
-            // Reset auto-rotation timer when manually selecting a slide
-            clearTimeout(slideTimeout);
-            slideTimeout = setTimeout(showSlides, 5000);
         }
 
         showSlides();
