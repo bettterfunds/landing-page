@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr" class="scroll-smooth">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -145,11 +145,26 @@
                     <a href="#impact" class="text-gray-600 hover:text-brand-blue transition" data-i18n="nav_impact">Impact</a>
                     <a href="#team" class="text-gray-600 hover:text-brand-blue transition" data-i18n="nav_team">Team</a>
                     
+                    
+
+                    <!-- Social Icons: X & LinkedIn (aligned, reduced spacing) -->
+                    <div class="flex items-center gap-2">
+                        <a href="https://x.com/bettterFunds" target="_blank" rel="noopener noreferrer" aria-label="X (opens in new tab)" class="text-gray-600 hover:text-brand-blue transition flex items-center p-1">
+                            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M18 6L6 18"></path>
+                                <path d="M6 6l12 12"></path>
+                            </svg>
+                        </a>
+                        <a href="https://www.linkedin.com/company/bettterFunds" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in new tab)" class="text-gray-600 hover:text-brand-blue transition flex items-center p-1">
+                            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.9 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v14H0zM8 8h4.8v2h.1c.7-1.3 2.4-2.6 4.9-2.6C23.3 7.4 24 10 24 14.2V22h-5v-7.2c0-1.7 0-3.9-2.4-3.9-2.4 0-2.8 1.8-2.8 3.8V22H8V8z"/></svg>
+                        </a>
+                    </div>
+
                     <!-- Language Selector -->
                     <div class="relative lang-dropdown py-4">
                         <button class="flex items-center gap-1 text-gray-600 hover:text-brand-blue transition">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            <span id="current-lang" class="uppercase font-bold text-xs">FR</span>
+                            <span id="current-lang" class="uppercase font-bold text-xs">EN</span>
                         </button>
                         <div class="lang-menu absolute top-full right-0 w-24 bg-white shadow-lg rounded-lg border border-gray-100 hidden flex-col z-50">
                             <button onclick="changeLanguage('fr')" class="block w-full text-left px-4 py-2 hover:bg-gray-50 text-sm">Français</button>
@@ -166,9 +181,20 @@
                 </div>
 
                 <!-- Mobile menu button -->
-                <div class="md:hidden flex items-center gap-4">
+                <div class="md:hidden flex items-center gap-2">
+                    <!-- Social Icons (mobile) -->
+                    <a href="https://x.com/bettterFunds" target="_blank" rel="noopener noreferrer" aria-label="X (opens in new tab)" class="text-brand-blue hover:text-brand-blue transition flex items-center p-1">
+                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M18 6L6 18"></path>
+                            <path d="M6 6l12 12"></path>
+                        </svg>
+                    </a>
+                    <a href="https://www.linkedin.com/company/bettterFunds" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in new tab)" class="text-brand-blue hover:text-brand-blue transition flex items-center p-1">
+                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.9 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v14H0zM8 8h4.8v2h.1c.7-1.3 2.4-2.6 4.9-2.6C23.3 7.4 24 10 24 14.2V22h-5v-7.2c0-1.7 0-3.9-2.4-3.9-2.4 0-2.8 1.8-2.8 3.8V22H8V8z"/></svg>
+                    </a>
+
                     <!-- Mobile Lang Switcher (Simplified) -->
-                    <button onclick="cycleLanguage()" class="text-brand-blue font-bold text-xs border border-brand-blue rounded px-2 py-1 uppercase" id="mobile-lang-btn">FR</button>
+                    <button onclick="cycleLanguage()" class="text-brand-blue font-bold text-xs border border-brand-blue rounded px-2 py-1 uppercase" id="mobile-lang-btn">EN</button>
 
                     <button id="mobile-menu-btn" class="text-gray-600 hover:text-brand-blue focus:outline-none p-2">
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -248,7 +274,7 @@
                         <svg class="w-4 h-4 rtl:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
                     </a>
                 </div>
-                <p class="mt-8 text-xs text-gray-300 font-display font-semibold uppercase tracking-widest" data-i18n="launch_date">Lancement Beta 2027</p>
+                <p class="mt-8 text-xs text-gray-300 font-display font-semibold uppercase tracking-widest" data-i18n="launch_date">Lancement 25 FÉV 2026</p>
             </div>
             
             <!-- Slider Indicators -->
@@ -382,7 +408,7 @@
                 <div class="relative pl-12 opacity-50">
                     <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-white/50 border-4 border-brand-blue"></div>
                     <h4 class="font-display text-lg font-bold text-blue-300" data-i18n="step_3_title">Lancement Beta</h4>
-                    <span class="font-sans text-xs font-semibold text-blue-400 uppercase tracking-wide block mb-2" data-i18n="step_3_date">2027</span>
+                    <span class="font-sans text-xs font-semibold text-blue-400 uppercase tracking-wide block mb-2" data-i18n="step_3_date">25 FÉV 2026</span>
                     <p class="font-sans text-blue-200" data-i18n="step_3_text">Ouverture de la plateforme aux premiers investisseurs et porteurs de projets.</p>
                 </div>
             </div>
@@ -505,12 +531,10 @@
                 <div>
                     <h4 class="font-display font-bold text-brand-blue mb-2" data-i18n="investor_title">Investisseurs / Fonds</h4>
                     <p class="text-sm text-gray-500 mb-2" data-i18n="investor_text">Vous cherchez du deal flow qualifié ?</p>
-                    <a href="mailto:invest@bettterfunds.com" class="text-brand-blue text-sm font-semibold hover:underline">invest@bettterfunds.com</a>
                 </div>
                 <div>
                     <h4 class="font-display font-bold text-brand-blue mb-2" data-i18n="partner_title">Partenaires / Presse</h4>
                     <p class="text-sm text-gray-500 mb-2" data-i18n="partner_text">Construisons ensemble.</p>
-                    <a href="mailto:contact@bettterfunds.com" class="text-brand-blue text-sm font-semibold hover:underline">contact@bettterfunds.com</a>
                 </div>
             </div>
         </div>
@@ -524,14 +548,14 @@
                 <span class="mx-2 text-gray-300">|</span>
                 <span>Abidjan, Côte d'Ivoire.</span>
             </div>
-            <div class="flex space-x-6">
+                <div class="flex space-x-6">
                 <a href="#" class="hover:text-black transition" data-i18n="footer_legal">Mentions Légales</a>
                 <a href="#" class="hover:text-black transition" data-i18n="footer_privacy">Confidentialité</a>
-                <a href="#" class="hover:text-black transition">LinkedIn</a>
             </div>
             <div class="text-gray-500">
                 &copy; 2025 bettterFunds Inc.
             </div>
+            
         </div>
     </footer>
 
@@ -553,7 +577,7 @@
                 hero_subtitle: "bettterFunds construit l'infrastructure numérique de confiance qui aligne les besoins d'investissement, les investisseurs et les intermédiaires.",
                 cta_main: "Rejoindre la liste d'attente",
                 cta_secondary: "Découvrir",
-                launch_date: "LANCEMENT BETA 2027",
+                launch_date: "LANCEMENT 25 FÉV 2026",
                 // Why
                 why_badge: "LE CONTEXTE",
                 why_title: "Le gap du financement",
@@ -571,7 +595,7 @@
                 roadmap_badge: "ROADMAP", roadmap_title: "État d'avancement",
                 step_1_title: "Conception", step_1_date: "FIN 2025", step_1_text: "Définition du modèle technique, architecture de la base de données et acquisition.",
                 step_2_title: "Structuration & R&D", step_2_date: "EN COURS - 2026", step_2_text: "Enregistrement légal à Abidjan. Construction du \"Data Lake\" des fonds thématiques.",
-                step_3_title: "Lancement Beta", step_3_date: "2027", step_3_text: "Ouverture de la plateforme aux premiers investisseurs et porteurs de projets.",
+                step_3_title: "Lancement Beta", step_3_date: "25 FÉV 2026", step_3_text: "Ouverture de la plateforme aux premiers investisseurs et porteurs de projets.",
                 // Impact
                 impact_badge: "IMPACT", impact_title: "Pourquoi c'est important",
                 impact_text: "Chaque dollar investi via bettterFunds ne génère pas seulement du rendement financier, il active des solutions concrètes pour le climat.",
@@ -603,7 +627,7 @@
                 hero_subtitle: "bettterFunds builds the trusted digital infrastructure aligning investment needs, investors, and intermediaries.",
                 cta_main: "Join the Waitlist",
                 cta_secondary: "Learn More",
-                launch_date: "BETA LAUNCH 2027",
+                launch_date: "LAUNCH 25 FEB 2026",
                 why_badge: "THE CONTEXT",
                 why_title: "The Funding Gap",
                 why_text_1: "Africa is the continent of green growth, yet capital struggles to reach projects. Why? Because information is fragmented.",
@@ -618,7 +642,7 @@
                 roadmap_badge: "ROADMAP", roadmap_title: "Progress Status",
                 step_1_title: "Concept", step_1_date: "LATE 2025", step_1_text: "Defining technical model, database architecture, and asset acquisition.",
                 step_2_title: "Structuring & R&D", step_2_date: "ONGOING - 2026", step_2_text: "Legal registration in Abidjan. Building the 'Data Lake' of thematic funds.",
-                step_3_title: "Beta Launch", step_3_date: "2027", step_3_text: "Platform opening to initial selected investors and project owners.",
+                step_3_title: "Beta Launch", step_3_date: "25 FEB 2026", step_3_text: "Platform opening to initial selected investors and project owners.",
                 impact_badge: "IMPACT", impact_title: "Why It Matters",
                 impact_text: "Every dollar invested via bettterFunds generates not just financial return, but activates concrete solutions for climate and economy.",
                 impact_list_1: "Democratize access to international finance.",
@@ -646,7 +670,7 @@
                 hero_subtitle: "bettterFunds baut die vertrauenswürdige digitale Infrastruktur, die Investitionsbedarf, Investoren und Vermittler aufeinander abstimmt.",
                 cta_main: "Auf die Warteliste",
                 cta_secondary: "Mehr erfahren",
-                launch_date: "BETA START 2027",
+                launch_date: "START 25 FEB 2026",
                 why_badge: "DER KONTEXT",
                 why_title: "Die Finanzierungslücke",
                 why_text_1: "Afrika ist der Kontinent des grünen Wachstums, doch Kapital erreicht die Projekte kaum. Warum? Weil Informationen fragmentiert sind.",
@@ -661,7 +685,7 @@
                 roadmap_badge: "ROADMAP", roadmap_title: "Fortschrittsstatus",
                 step_1_title: "Konzept", step_1_date: "ENDE 2025", step_1_text: "Definition des technischen Modells, Datenbankarchitektur und Akquise.",
                 step_2_title: "Strukturierung & F&E", step_2_date: "LAUFEND - 2026", step_2_text: "Rechtliche Registrierung in Abidjan. Aufbau des 'Data Lake' der Themenfonds.",
-                step_3_title: "Beta Start", step_3_date: "2027", step_3_text: "Öffnung der Plattform für erste ausgewählte Investoren und Projektträger.",
+                step_3_title: "Beta Start", step_3_date: "25 FEB 2026", step_3_text: "Öffnung der Plattform für erste ausgewählte Investoren und Projektträger.",
                 impact_badge: "EINFLUSS", impact_title: "Warum es wichtig ist",
                 impact_text: "Jeder Dollar, der über bettterFunds investiert wird, generiert nicht nur finanzielle Rendite, sondern aktiviert konkrete Lösungen.",
                 impact_list_1: "Zugang zu internationaler Finanzierung demokratisieren.",
@@ -689,7 +713,7 @@
                 hero_subtitle: "تقوم bettterFunds ببناء البنية التحتية الرقمية الموثوقة التي توائم بين احتياجات الاستثمار والمستثمرين والوسطاء.",
                 cta_main: "انضم إلى قائمة الانتظار",
                 cta_secondary: "اكتشف المزيد",
-                launch_date: "إطلاق النسخة التجريبية 2027",
+                launch_date: "إطلاق النسخة التجريبية 25 فبراير 2026",
                 why_badge: "السياق",
                 why_title: "فجوة التمويل",
                 why_text_1: "أفريقيا هي قارة النمو الأخضر، لكن رأس المال يكافح للوصول إلى المشاريع. لماذا؟ لأن المعلومات مجزأة.",
@@ -704,7 +728,7 @@
                 roadmap_badge: "خارطة الطريق", roadmap_title: "حالة التقدم",
                 step_1_title: "المفهوم", step_1_date: "أواخر 2025", step_1_text: "تعريف النموذج التقني، وهندسة قاعدة البيانات والاستحواذ.",
                 step_2_title: "الهيكلة والبحث", step_2_date: "جاري - 2026", step_2_text: "التسجيل القانوني في أبيدجان. بناء 'بحيرة البيانات' للصناديق المتخصصة.",
-                step_3_title: "الإطلاق التجريبي", step_3_date: "2027", step_3_text: "فتح المنصة للمستثمرين الأوائل وأصحاب المشاريع المختارين.",
+                step_3_title: "الإطلاق التجريبي", step_3_date: "25 فبراير 2026", step_3_text: "فتح المنصة للمستثمرين الأوائل وأصحاب المشاريع المختارين.",
                 impact_badge: "الأثر", impact_title: "لماذا هذا مهم",
                 impact_text: "كل دولار يتم استثماره عبر bettterFunds لا يولد عائداً مالياً فحسب، بل يفعل حلولاً ملموسة للمناخ.",
                 impact_list_1: "إضفاء الطابع الديمقراطي على الوصول للتمويل الدولي.",
@@ -815,9 +839,20 @@
             });
         }, observerOptions);
 
+        // Set default language to English on load and align cycle index
+        try {
+            changeLanguage('en');
+            const idx = langs.indexOf('en');
+            if (idx >= 0) currentLangIdx = idx;
+        } catch (e) {
+            console.warn('Language init failed', e);
+        }
         document.querySelectorAll('.reveal').forEach((section) => {
             observer.observe(section);
         });
     </script>
+
+   
+
 </body>
 </html>
