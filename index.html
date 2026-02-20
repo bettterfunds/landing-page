@@ -144,7 +144,7 @@
         .flip-card:hover .flip-inner, .flip-inner.is-flipped { transform: rotateY(180deg); }
         .flip-face { position: absolute; inset:0; backface-visibility: hidden; border-radius: 0.75rem; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; padding:1rem; box-sizing:border-box; }
         .flip-front { background: white; color: #022c6b; }
-        .flip-back { background: #0b2540; color: white; transform: rotateY(180deg); display:block; }
+        .flip-back { background: #0000FF; color: white; transform: rotateY(180deg); display:block; }
         .flip-img { width:10rem; height:10rem; border-radius:9999px; background:white; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:1.75rem; color:#022c6b; }
         /* Ring + shadow for photos */
         .flip-face img, .flip-img {
@@ -175,50 +175,89 @@
             <div class="flex justify-between h-20 items-center">
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex flex-col justify-center cursor-pointer" onclick="window.scrollTo(0,0)">
-                    <span class="text-2xl font-bold font-display text-black tracking-tight leading-none">be<span class="logo-ligature">ttt</span>er<span class="text-brand-blue">Funds</span></span>
+                    <img src="assets/bettterfunds_main_logo.png" alt="bettterFunds Logo" class="h-12 w-auto logo-ligature">
                 </div>
                 
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex gap-8 items-center text-sm font-medium font-display">
-                    <a href="#why" class="text-gray-600 hover:text-brand-blue transition" data-i18n="nav_why">Why</a>
-                    <a href="#what" class="text-gray-600 hover:text-brand-blue transition" data-i18n="nav_what">What</a>
-                    <a href="#when" class="text-gray-600 hover:text-brand-blue transition" data-i18n="nav_when">When</a>
-                    <a href="#impact" class="text-gray-600 hover:text-brand-blue transition" data-i18n="nav_impact">Impact</a>
-                    <a href="#team" class="text-gray-600 hover:text-brand-blue transition" data-i18n="nav_team">Team</a>
-                    
-                    
-
-                    <!-- Social Icons: X & LinkedIn (aligned, reduced spacing) -->
-                    <div class="flex items-center gap-2">
-                        <a href="https://x.com/bettterFunds" target="_blank" rel="noopener noreferrer" aria-label="X (opens in new tab)" class="text-gray-600 hover:text-brand-blue transition flex items-center p-1">
-                            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <path d="M18 6L6 18"></path>
-                                <path d="M6 6l12 12"></path>
-                            </svg>
-                        </a>
-                        <a href="https://www.linkedin.com/company/bettterFunds" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in new tab)" class="text-gray-600 hover:text-brand-blue transition flex items-center p-1">
-                            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.9 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v14H0zM8 8h4.8v2h.1c.7-1.3 2.4-2.6 4.9-2.6C23.3 7.4 24 10 24 14.2V22h-5v-7.2c0-1.7 0-3.9-2.4-3.9-2.4 0-2.8 1.8-2.8 3.8V22H8V8z"/></svg>
-                        </a>
-                    </div>
-
-                    <!-- Language Selector -->
-                    <div class="relative lang-dropdown py-4">
-                        <button class="flex items-center gap-1 text-gray-600 hover:text-brand-blue transition">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            <span id="current-lang" class="uppercase font-bold text-xs">EN</span>
-                        </button>
-                        <div class="lang-menu absolute top-full right-0 w-24 bg-white shadow-lg rounded-lg border border-gray-100 hidden flex-col z-50">
-                            <button onclick="changeLanguage('fr')" class="block w-full text-left px-4 py-2 hover:bg-gray-50 text-sm">Français</button>
-                            <button onclick="changeLanguage('en')" class="block w-full text-left px-4 py-2 hover:bg-gray-50 text-sm">English</button>
-                            <button onclick="changeLanguage('de')" class="block w-full text-left px-4 py-2 hover:bg-gray-50 text-sm">Deutsch</button>
-                            <button onclick="changeLanguage('ar')" class="block w-full text-right px-4 py-2 hover:bg-gray-50 text-sm font-arabic">العربية</button>
+                    <div class="hidden md:flex gap-6 items-center">
+                        <div class="relative group">
+                            <button class="flex items-center gap-1 text-gray-600 hover:text-brand-blue transition"><span data-i18n="nav_problems">Problem(s) we aim to solve</span></button>
+                            <div class="absolute left-0 top-full w-64 bg-white shadow-lg rounded hidden group-hover:block z-50 p-3">
+                                <a href="#investment-ready" class="block px-2 py-1 text-sm text-gray-700 hover:bg-gray-50" data-i18n="nav_problems_item1">Investment-ready SME’s</a>
+                                <a href="#better-funds" class="block px-2 py-1 text-sm text-gray-700 hover:bg-gray-50" data-i18n="nav_problems_item2">Better funds: more transparent, understandable &amp; performing</a>
+                                <a href="#pipeline" class="block px-2 py-1 text-sm text-gray-700 hover:bg-gray-50" data-i18n="nav_problems_item3">A pipeline of investment-ready companies and projects</a>
+                            </div>
                         </div>
-                    </div>
 
-                    <!-- Button -->
-                    <a href="#join" class="px-6 py-2.5 rounded shadow-lg bg-brand-blue text-white font-semibold hover:bg-blue-800 transition transform hover:-translate-y-0.5" data-i18n="nav_join">
-                        Rejoindre
-                    </a>
+                        <div class="relative group">
+                            <button class="flex items-center gap-1 text-gray-600 hover:text-brand-blue transition"><span data-i18n="nav_forwho">For who?</span></button>
+                            <div class="absolute left-0 top-full w-56 bg-white shadow-lg rounded hidden group-hover:block z-50 p-3">
+                                <a href="#for-those" class="block px-2 py-1 text-sm text-gray-700 hover:bg-gray-50" data-i18n="nav_forwho_item1">For those with investment needs</a>
+                                <a href="#intermediaries" class="block px-2 py-1 text-sm text-gray-700 hover:bg-gray-50" data-i18n="nav_forwho_item2">For intermediaries</a>
+                                <a href="#funds-investors" class="block px-2 py-1 text-sm text-gray-700 hover:bg-gray-50" data-i18n="nav_forwho_item3">For funds &amp; investors</a>
+                                <a href="#funds-of-funds" class="block px-2 py-1 text-sm text-gray-700 hover:bg-gray-50" data-i18n="nav_forwho_item4">For funds of funds</a>
+                            </div>
+                        </div>
+
+                        <div class="relative group">
+                            <button class="flex items-center gap-1 text-gray-600 hover:text-brand-blue transition"><span data-i18n="nav_positioning">Positioning &amp; approach</span></button>
+                            <div class="absolute left-0 top-full w-56 bg-white shadow-lg rounded hidden group-hover:block z-50 p-3">
+                                <a href="#stakeholders" class="block px-2 py-1 text-sm text-gray-700 hover:bg-gray-50" data-i18n="nav_positioning_item1">We engage our stakeholders …</a>
+                                <a href="#journey" class="block px-2 py-1 text-sm text-gray-700 hover:bg-gray-50" data-i18n="nav_positioning_item2">… on the journey towards a digital platform</a>
+                            </div>
+                        </div>
+
+                        <div class="relative group">
+                            <button class="flex items-center gap-1 text-gray-600 hover:text-brand-blue transition"><span data-i18n="nav_plan">Our plan</span></button>
+                            <div class="absolute left-0 top-full w-64 bg-white shadow-lg rounded hidden group-hover:block z-50 p-3">
+                                <a href="#whitepaper" class="block px-2 py-1 text-sm text-gray-700 hover:bg-gray-50" data-i18n="nav_plan_item1">White paper</a>
+                                <a href="#prototype" class="block px-2 py-1 text-sm text-gray-700 hover:bg-gray-50" data-i18n="nav_plan_item2">Prototype and MVP</a>
+                                <a href="#fundraising" class="block px-2 py-1 text-sm text-gray-700 hover:bg-gray-50" data-i18n="nav_plan_item3">Attracting investors and fundraising</a>
+                                <a href="#go-to-market" class="block px-2 py-1 text-sm text-gray-700 hover:bg-gray-50" data-i18n="nav_plan_item4">Go-to-market: Growth, growth, growth</a>
+                                <a href="#exit" class="block px-2 py-1 text-sm text-gray-700 hover:bg-gray-50" data-i18n="nav_plan_item5">Exit strategy</a>
+                            </div>
+                        </div>
+
+                        <div class="relative group">
+                            <button class="flex items-center gap-1 text-gray-600 hover:text-brand-blue transition"><span data-i18n="nav_story">Our story</span></button>
+                            <div class="absolute left-0 top-full w-56 bg-white shadow-lg rounded hidden group-hover:block z-50 p-3">
+                                <a href="#team" class="block px-2 py-1 text-sm text-gray-700 hover:bg-gray-50" data-i18n="nav_story_item1">Sören Bauer</a>
+                                <a href="#team" class="block px-2 py-1 text-sm text-gray-700 hover:bg-gray-50" data-i18n="nav_story_item2">Haoua Mamoudou</a>
+                                <a href="#team" class="block px-2 py-1 text-sm text-gray-700 hover:bg-gray-50" data-i18n="nav_story_item3">Mahamadou Hatchabi</a>
+                            </div>
+                        </div>
+
+                        <!-- Social Icons: X & LinkedIn (aligned, reduced spacing) -->
+                        <div class="flex items-center gap-2">
+                            <a href="https://x.com/bettterFunds" target="_blank" rel="noopener noreferrer" aria-label="X (opens in new tab)" class="text-gray-600 hover:text-brand-blue transition flex items-center p-1">
+                                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M18 6L6 18"></path>
+                                    <path d="M6 6l12 12"></path>
+                                </svg>
+                            </a>
+                            <a href="https://www.linkedin.com/company/bettterFunds" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in new tab)" class="text-gray-600 hover:text-brand-blue transition flex items-center p-1">
+                                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.9 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v14H0zM8 8h4.8v2h.1c.7-1.3 2.4-2.6 4.9-2.6C23.3 7.4 24 10 24 14.2V22h-5v-7.2c0-1.7 0-3.9-2.4-3.9-2.4 0-2.8 1.8-2.8 3.8V22H8V8z"/></svg>
+                            </a>
+                        </div>
+
+                        <!-- Language Selector -->
+                        <div class="relative lang-dropdown py-4">
+                            <button class="flex items-center gap-1 text-gray-600 hover:text-brand-blue transition">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                <span id="current-lang" class="uppercase font-bold text-xs">EN</span>
+                            </button>
+                            <div class="lang-menu absolute top-full right-0 w-24 bg-white shadow-lg rounded-lg border border-gray-100 hidden flex-col z-50">
+                                <button onclick="changeLanguage('fr')" class="block w-full text-left px-4 py-2 hover:bg-gray-50 text-sm">Français</button>
+                                <button onclick="changeLanguage('en')" class="block w-full text-left px-4 py-2 hover:bg-gray-50 text-sm">English</button>
+                                <button onclick="changeLanguage('de')" class="block w-full text-left px-4 py-2 hover:bg-gray-50 text-sm">Deutsch</button>
+                                <button onclick="changeLanguage('ar')" class="block w-full text-right px-4 py-2 hover:bg-gray-50 text-sm font-arabic">العربية</button>
+                            </div>
+                        </div>
+
+                        <!-- Contact as Join CTA -->
+                        <a href="#contact" class="px-6 py-2.5 rounded shadow-lg bg-brand-blue text-white font-semibold hover:bg-blue-800 transition transform hover:-translate-y-0.5" aria-label="Join / Contact"><span data-i18n="nav_join_cta">Join Us</span></a>
+                    </div>
                 </div>
 
                 <!-- Mobile menu button -->
@@ -247,14 +286,41 @@
         </div>
         
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full left-0 shadow-xl font-display">
-            <div class="flex flex-col p-6 space-y-4 text-center font-medium">
-                <a href="#why" class="text-gray-600 hover:text-brand-blue py-2" data-i18n="nav_why">Why</a>
-                <a href="#what" class="text-gray-600 hover:text-brand-blue py-2" data-i18n="nav_what">What</a>
-                <a href="#when" class="text-gray-600 hover:text-brand-blue py-2" data-i18n="nav_when">When</a>
-                <a href="#impact" class="text-gray-600 hover:text-brand-blue py-2" data-i18n="nav_impact">Impact</a>
-                <a href="#team" class="text-gray-600 hover:text-brand-blue py-2" data-i18n="nav_team">Team</a>
-                <a href="#join" class="text-brand-blue font-bold py-2 border-t border-gray-100 mt-2" data-i18n="nav_join">Join Us</a>
+                <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full left-0 shadow-xl font-display">
+            <div class="flex flex-col p-6 space-y-4 text-left font-medium">
+                <details class="mb-2">
+                    <summary class="py-2"><span data-i18n="nav_problems">Problem(s) we aim to solve</span></summary>
+                    <a href="#investment-ready" class="block px-4 py-1 text-sm text-gray-700" data-i18n="nav_problems_item1">Investment-ready SME’s</a>
+                    <a href="#better-funds" class="block px-4 py-1 text-sm text-gray-700" data-i18n="nav_problems_item2">Better funds: more transparent, understandable &amp; performing</a>
+                    <a href="#pipeline" class="block px-4 py-1 text-sm text-gray-700" data-i18n="nav_problems_item3">A pipeline of investment-ready companies and projects</a>
+                </details>
+                <details class="mb-2">
+                    <summary class="py-2"><span data-i18n="nav_forwho">For who?</span></summary>
+                    <a href="#for-those" class="block px-4 py-1 text-sm text-gray-700" data-i18n="nav_forwho_item1">For those with investment needs</a>
+                    <a href="#intermediaries" class="block px-4 py-1 text-sm text-gray-700" data-i18n="nav_forwho_item2">For intermediaries</a>
+                    <a href="#funds-investors" class="block px-4 py-1 text-sm text-gray-700" data-i18n="nav_forwho_item3">For funds &amp; investors</a>
+                    <a href="#funds-of-funds" class="block px-4 py-1 text-sm text-gray-700" data-i18n="nav_forwho_item4">For funds of funds</a>
+                </details>
+                <details class="mb-2">
+                    <summary class="py-2"><span data-i18n="nav_positioning">Positioning &amp; approach</span></summary>
+                    <a href="#stakeholders" class="block px-4 py-1 text-sm text-gray-700" data-i18n="nav_positioning_item1">We engage our stakeholders …</a>
+                    <a href="#journey" class="block px-4 py-1 text-sm text-gray-700" data-i18n="nav_positioning_item2">… on the journey towards a digital platform</a>
+                </details>
+                <details class="mb-2">
+                    <summary class="py-2"><span data-i18n="nav_plan">Our plan</span></summary>
+                    <a href="#whitepaper" class="block px-4 py-1 text-sm text-gray-700" data-i18n="nav_plan_item1">White paper</a>
+                    <a href="#prototype" class="block px-4 py-1 text-sm text-gray-700" data-i18n="nav_plan_item2">Prototype and MVP</a>
+                    <a href="#fundraising" class="block px-4 py-1 text-sm text-gray-700" data-i18n="nav_plan_item3">Attracting investors and fundraising</a>
+                    <a href="#go-to-market" class="block px-4 py-1 text-sm text-gray-700" data-i18n="nav_plan_item4">Go-to-market: Growth</a>
+                    <a href="#exit" class="block px-4 py-1 text-sm text-gray-700" data-i18n="nav_plan_item5">Exit strategy</a>
+                </details>
+                <details class="mb-2">
+                    <summary class="py-2"><span data-i18n="nav_story">Our story</span></summary>
+                    <a href="#team" class="block px-4 py-1 text-sm text-gray-700" data-i18n="nav_story_item1">Sören Bauer</a>
+                    <a href="#team" class="block px-4 py-1 text-sm text-gray-700" data-i18n="nav_story_item2">Haoua Mamoudou</a>
+                    <a href="#team" class="block px-4 py-1 text-sm text-gray-700" data-i18n="nav_story_item3">Mahamadou Hatchabi</a>
+                </details>
+                <a href="#contact" class="block mt-4 px-4 py-3 bg-brand-blue text-white rounded text-center font-bold"><span data-i18n="nav_join_cta">Join Us</span></a>
             </div>
         </div>
     </nav>
@@ -286,7 +352,7 @@
                     <span class="font-display font-bold tracking-[0.2em] text-gray-400 uppercase text-xs mb-6 block" data-i18n="hero_badge_promise">Notre Promesse</span>
                     <h1 class="font-display text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 text-black">
                         <span data-i18n="hero_promise_1">Connecter l'Afrique aux</span><br>
-                        <span class="blue-underline text-brand-blue" data-i18n="hero_promise_2">Fonds Thématiques Mondiaux.</span>
+                        <span class="text-brand-blue" data-i18n="hero_promise_2">Fonds Thématiques Mondiaux.</span>
                     </h1>
                 </div>
 
@@ -307,8 +373,8 @@
                     bettterFunds construit l'infrastructure numérique de confiance qui aligne les besoins d'investissement, les investisseurs et les intermédiaires.
                 </p>
                 <div class="flex flex-col sm:flex-row justify-center gap-4">
-                    <a href="#join" class="px-8 py-4 rounded shadow-lg bg-brand-blue text-white font-display font-bold hover:bg-blue-800 hover:shadow-xl transition-all text-lg transform hover:-translate-y-1" data-i18n="cta_main">
-                        Rejoindre la liste d'attente
+                    <a href="#contact" class="px-8 py-4 rounded shadow-lg bg-brand-blue text-white font-display font-bold hover:bg-blue-800 hover:shadow-xl transition-all text-lg transform hover:-translate-y-1" data-i18n="cta_main">
+                        Nous contacter
                     </a>
                     <a href="#why" class="px-8 py-4 rounded border border-gray-300 text-brand-blue font-display font-medium hover:bg-gray-50 transition-all text-lg flex items-center justify-center gap-2">
                         <span data-i18n="cta_secondary">Découvrir</span>
@@ -317,6 +383,7 @@
                 </div>
                 <p class="mt-8 text-xs text-gray-300 font-display font-semibold uppercase tracking-widest" data-i18n="launch_date">Lancement 25 FÉV 2026</p>
             </div>
+
             
             <!-- Slider Indicators -->
             <div class="flex justify-center gap-3 mt-12">
@@ -327,27 +394,21 @@
         </div>
     </section>
 
-    <!-- 2. Why (BLUE BG / WHITE TEXT) -->
+    <!-- Overview Grid: Top-level sections with brief intros -->
+    <!-- overview grid removed; content merged into sections below -->
+
+    <!-- 2. Problem(s) we aim to solve (formerly 'Why') -->
     <section id="why" class="py-24 bg-brand-blue text-white reveal">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid md:grid-cols-2 gap-16 items-center">
                 <div>
-                    <h2 class="font-display text-sm font-bold text-blue-200 uppercase tracking-widest mb-3" data-i18n="why_badge">Le Contexte</h2>
-                    <h3 class="font-display text-3xl md:text-4xl font-bold text-white mb-6 leading-tight" data-i18n="why_title">Le gap du financement</h3>
+                    <h2 class="font-display text-sm font-bold text-blue-200 uppercase tracking-widest mb-3">The Context</h2>
+                    <h3 class="font-display text-3xl md:text-4xl font-bold text-white mb-6 leading-tight"><span data-i18n="section_problems_title">Problem(s) we aim to solve</span></h3>
                     <div class="font-sans prose prose-lg text-blue-50">
-                        <p class="mb-4" data-i18n="why_text_1">
-                            L'Afrique est le continent de la croissance verte, mais le capital peine à irriguer les projets. Pourquoi ? 
-                            Parce que l'information est fragmentée.
-                        </p>
-                        <p class="mb-4" data-i18n="why_text_2">
-                            D'un côté, des <strong>fonds thématiques</strong> cherchent désespérément des projets éligibles. 
-                            De l'autre, des entrepreneurs ignorent l'existence de ces fonds ou échouent sur les critères d'éligibilité.
-                        </p>
-                        <!-- Quote Block -->
+                        <p class="mb-4">Africa is the continent of green growth, yet capital struggles to reach projects because information is fragmented.</p>
+                        <p class="mb-4">Many thematic funds — public and private — are poorly explained and lack efficiency due to unclear criteria, fragmented eligibility information, and opaque procedures.</p>
                         <div class="pl-4 border-l-4 border-white mt-6">
-                            <p class="font-medium text-white italic" data-i18n="why_quote">
-                                "Le fossé n'est pas un manque d'argent, c'est un manque de structure."
-                            </p>
+                            <p class="font-medium text-white italic">"The gap isn't a lack of money, it's a lack of structure."</p>
                         </div>
                     </div>
                 </div>
@@ -380,13 +441,74 @@
                 </div>
             </div>
         </div>
+
     </section>
 
-    <!-- 3. What (WHITE BG / BLUE TEXT) -->
-    <section id="what" class="py-24 bg-white reveal">
+    <!-- Problem Subsections -->
+    <section id="investment-ready" class="py-12 bg-white reveal">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h4 class="font-display text-xl font-bold text-brand-blue mb-3"><span data-i18n="problems_investment_title">Investment-ready SME’s</span></h4>
+            <p class="text-gray-600" data-i18n="problems_investment_text">Many SMEs lack the documentation and structuring required by thematic funds; bettterFunds helps bridge this gap.</p>
+        </div>
+    </section>
+
+    <section id="better-funds" class="py-12 bg-gray-50 reveal">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h4 class="font-display text-xl font-bold text-brand-blue mb-3"><span data-i18n="problems_better_title">Better funds: transparency & performance</span></h4>
+            <p class="text-gray-600" data-i18n="problems_better_text">Many thematic funds have opaque selection criteria — we standardise and clarify eligibility and impact metrics.</p>
+        </div>
+    </section>
+
+    <section id="pipeline" class="py-12 bg-white reveal">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h4 class="font-display text-xl font-bold text-brand-blue mb-3"><span data-i18n="problems_pipeline_title">A pipeline of investment-ready projects</span></h4>
+            <p class="text-gray-600" data-i18n="problems_pipeline_text">Create a continuous, quality pipeline of projects that match thematic fund criteria.</p>
+        </div>
+    </section>
+
+    <!-- New Section: For who? -->
+    <section id="forwho" class="py-24 bg-brand-blue text-white reveal">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="font-display text-sm font-bold text-gray-400 uppercase tracking-widest mb-3" data-i18n="what_badge">Notre Solution</h2>
-            <h3 class="font-display text-3xl md:text-4xl font-bold text-brand-blue mb-16" data-i18n="what_title">Ce que nous bâtissons</h3>
+            <h2 class="font-display text-sm font-bold text-white uppercase tracking-widest mb-3"><span data-i18n="section_forwho_title">For who?</span></h2>
+            <h3 class="font-display text-3xl md:text-4xl font-bold text-white mb-6"><span data-i18n="section_forwho_sub">Who benefits from bettterFunds</span></h3>
+            <p class="max-w-3xl mx-auto text-white" data-i18n="section_forwho_text">Working on similar challenges? Interested in our business model and solutions for thematic funds? Looking for bankable projects? We serve SMEs with investment needs, public sector actors, thematic funds, investors and intermediaries.</p>
+        </div>
+    </section>
+    
+    <!-- For who subsections (anchors) -->
+    <section id="for-those" class="py-12 bg-white reveal">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h4 class="font-display text-xl font-bold text-brand-blue mb-3"><span data-i18n="forwho_those_title">For those with investment needs</span></h4>
+            <p class="text-gray-600" data-i18n="forwho_those_text">Startups and SMEs seeking growth capital can find targeted funds and clear application paths via bettterFunds.</p>
+        </div>
+    </section>
+
+    <section id="intermediaries" class="py-12 bg-gray-50 reveal">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h4 class="font-display text-xl font-bold text-brand-blue mb-3"><span data-i18n="forwho_intermediaries_title">For intermediaries</span></h4>
+            <p class="text-gray-600" data-i18n="forwho_intermediaries_text">Facilitate pipeline preparation, due diligence and bridging activities for project sponsors.</p>
+        </div>
+    </section>
+
+    <section id="funds-investors" class="py-12 bg-white reveal">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h4 class="font-display text-xl font-bold text-brand-blue mb-3"><span data-i18n="forwho_funds_title">For funds & investors</span></h4>
+            <p class="text-gray-600" data-i18n="forwho_funds_text">Discover pre-vetted projects aligned with your thematic strategy and impact objectives.</p>
+        </div>
+    </section>
+
+    <section id="funds-of-funds" class="py-12 bg-gray-50 reveal">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h4 class="font-display text-xl font-bold text-brand-blue mb-3"><span data-i18n="forwho_funds_of_funds_title">For funds of funds</span></h4>
+            <p class="text-gray-600" data-i18n="forwho_funds_of_funds_text">Aggregate and route capital efficiently into specialised thematic instruments.</p>
+        </div>
+    </section>
+
+    <!-- 3. Positioning & approach (replaces 'What') -->
+    <section id="what" class="py-24 bg-brand-blue text-white reveal">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="font-display text-sm font-bold text-gray-400 uppercase tracking-widest mb-3"><span data-i18n="section_positioning_title">Positioning &amp; approach</span></h2>
+            <h3 class="font-display text-3xl md:text-4xl font-bold text-white mb-16"><span data-i18n="section_positioning_sub">What we do & how we position</span></h3>
 
             <div class="grid md:grid-cols-3 gap-10">
                 <!-- Card 1 -->
@@ -419,12 +541,27 @@
         </div>
     </section>
 
-    <!-- 4. When (BLUE BG / WHITE TEXT) -->
-    <section id="when" class="py-24 bg-white reveal">
+    <!-- Positioning subsections -->
+    <section id="stakeholders" class="py-12 bg-gray-50 reveal">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h4 class="font-display text-xl font-bold text-brand-blue mb-3"><span data-i18n="positioning_stakeholders_title">We engage our stakeholders</span></h4>
+            <p class="text-gray-600" data-i18n="positioning_stakeholders_text">We involve fund managers, investors and intermediaries early to align incentives and data standards.</p>
+        </div>
+    </section>
+
+    <section id="journey" class="py-12 bg-white reveal">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h4 class="font-display text-xl font-bold text-brand-blue mb-3"><span data-i18n="positioning_journey_title">On the journey towards a digital platform</span></h4>
+            <p class="text-gray-600" data-i18n="positioning_journey_text">Our roadmap prioritises data quality, user experience and trust mechanisms to scale impact.</p>
+        </div>
+    </section>
+
+    <!-- 4. Our plan (replaces 'When' / Roadmap) -->
+    <section id="when" class="py-24 bg-brand-blue text-white reveal">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-10">
-                <h2 class="font-display text-sm font-bold text-gray-400 uppercase tracking-widest mb-3" data-i18n="roadmap_badge">Roadmap</h2>
-                <h3 class="font-display text-3xl font-bold text-brand-blue" data-i18n="roadmap_title">État d'avancement</h3>
+                <h2 class="font-display text-sm font-bold text-gray-400 uppercase tracking-widest mb-3"><span data-i18n="section_plan_title">Our plan</span></h2>
+                <h3 class="font-display text-3xl font-bold text-white"><span data-i18n="section_plan_sub">Progress Status</span></h3>
             </div>
 
             <!-- Top Row: Green Milestones -->
@@ -448,28 +585,64 @@
             </div>
         </div>
     </section>
+    
+    <!-- Plan subsections -->
+    <section id="whitepaper" class="py-12 bg-gray-50 reveal">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h4 class="font-display text-xl font-bold text-brand-blue mb-3"><span data-i18n="plan_whitepaper_title">White paper</span></h4>
+            <p class="text-gray-600" data-i18n="plan_whitepaper_text">Detailed concept, assumptions and proposed governance model are documented in our white paper.</p>
+        </div>
+    </section>
 
-    <!-- 5. Impact (WHITE BG / BLUE TEXT) -->
-    <section id="impact" class="py-24 bg-white reveal">
+    <section id="prototype" class="py-12 bg-white reveal">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h4 class="font-display text-xl font-bold text-brand-blue mb-3"><span data-i18n="plan_prototype_title">Prototype and MVP</span></h4>
+            <p class="text-gray-600" data-i18n="plan_prototype_text">Build and test a minimal product to validate matching and eligibility workflows.</p>
+        </div>
+    </section>
+
+    <section id="fundraising" class="py-12 bg-gray-50 reveal">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h4 class="font-display text-xl font-bold text-brand-blue mb-3"><span data-i18n="plan_fundraising_title">Attracting investors and fundraising</span></h4>
+            <p class="text-gray-600" data-i18n="plan_fundraising_text">Engage anchor investors and partners to secure initial capital and pilot deployments.</p>
+        </div>
+    </section>
+
+    <section id="go-to-market" class="py-12 bg-white reveal">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h4 class="font-display text-xl font-bold text-brand-blue mb-3"><span data-i18n="plan_goto_title">Go-to-market: Growth</span></h4>
+            <p class="text-gray-600" data-i18n="plan_goto_text">Scale the platform by onboarding more intermediaries, funds and regional partners.</p>
+        </div>
+    </section>
+
+    <section id="exit" class="py-12 bg-gray-50 reveal">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h4 class="font-display text-xl font-bold text-brand-blue mb-3"><span data-i18n="plan_exit_title">Exit strategy</span></h4>
+            <p class="text-gray-600" data-i18n="plan_exit_text">Explore strategic partnerships or marketplace models to ensure long-term sustainability.</p>
+        </div>
+    </section>
+
+    <!-- 5. Our story (replaces 'Impact') -->
+    <section id="impact" class="py-24 bg-brand-blue text-white reveal">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row justify-between items-center gap-16">
                 <div class="md:w-1/2">
-                    <h2 class="font-display text-sm font-bold text-gray-400 uppercase tracking-widest mb-3" data-i18n="impact_badge">Impact</h2>
-                    <h3 class="font-display text-3xl md:text-4xl font-bold mb-6 text-brand-blue" data-i18n="impact_title">Pourquoi c'est important</h3>
-                    <p class="font-sans text-gray-600 text-lg mb-6 leading-relaxed" data-i18n="impact_text">
-                        Chaque dollar investi via bettterFunds ne génère pas seulement du rendement financier, il active des solutions concrètes pour le climat, la santé et l'économie locale.
+                    <h2 class="font-display text-sm font-bold text-white uppercase tracking-widest mb-3"><span data-i18n="section_story_title">Our story</span></h2>
+                    <h3 class="font-display text-3xl md:text-4xl font-bold mb-6 text-white"><span data-i18n="section_story_sub">Why bettterFunds exists</span></h3>
+                    <p class="font-sans text-gray-200 text-lg mb-6 leading-relaxed" data-i18n="section_story_text">
+                        Many thematic funds are poorly explained and lack efficiency because of untransparent criteria and fragmented eligibility information. This recognition led to the creation of bettterFunds: to make funds more transparent, understandable and performing.
                     </p>
-                    <ul class="font-sans space-y-4 text-gray-700">
+                    <ul class="font-sans space-y-4 text-gray-200">
                         <li class="flex items-start">
-                            <span class="text-brand-blue mr-3 font-bold">✓</span>
+                            <span class="text-white mr-3 font-bold">✓</span>
                             <span data-i18n="impact_list_1">Démocratiser l'accès à la finance internationale.</span>
                         </li>
                         <li class="flex items-start">
-                            <span class="text-brand-blue mr-3 font-bold">✓</span>
+                            <span class="text-white mr-3 font-bold">✓</span>
                             <span data-i18n="impact_list_2">Standardiser la qualité des projets africains.</span>
                         </li>
                         <li class="flex items-start">
-                            <span class="text-brand-blue mr-3 font-bold">✓</span>
+                            <span class="text-white mr-3 font-bold">✓</span>
                             <span data-i18n="impact_list_3">Accélérer la transition écologique du continent.</span>
                         </li>
                     </ul>
@@ -496,14 +669,12 @@
     </section>
 
     <!-- 6. Team (BLUE BG / WHITE TEXT) -->
-    <section id="team" class="py-24 bg-brand-blue reveal">
+    <section id="team" class="py-24 bg-white text-black reveal">
         <div class="max-w-5xl mx-auto px-4 text-center">
-            <h2 class="font-display text-sm font-bold text-blue-200 uppercase tracking-widest mb-3" data-i18n="team_badge">L'Équipe</h2>
-            <h3 class="font-display text-3xl font-bold text-white mb-10" data-i18n="team_title">Qui porte le projet ?</h3>
+            <h2 class="font-display text-sm font-bold text-brand-blue uppercase tracking-widest mb-3" data-i18n="team_badge">L'Équipe</h2>
+            <h3 class="font-display text-3xl font-bold text-brand-blue mb-10" data-i18n="team_title"></h3>
             
-            <p class="font-sans text-xl text-blue-100 mb-16 max-w-2xl mx-auto" data-i18n="team_text">
-                Un collectif d'entrepreneurs et d'experts tech basés à Abidjan, unis par une mission commune.
-            </p>
+            <p class="font-sans text-xl text-brand-blue mb-16 max-w-2xl mx-auto" data-i18n="team_text"></p>
 
             <div class="flex flex-wrap justify-center items-start gap-8 font-display">
                 <!-- Team Flip Cards -->
@@ -511,11 +682,11 @@
                     <div class="flip-inner" data-card="1">
                         <div class="flip-face flip-front shadow-lg">
                             <img src="assets/Sören.jpg" alt="Sören Bauer" class="w-24 h-24 rounded-full object-cover mb-4">
-                            <h4 class="text-lg font-bold"> <span data-i18n="team_member_1_name">Founder</span></h4>
-                            <span class="text-sm font-medium text-gray-600 uppercase tracking-wider" data-i18n="team_member_1_role">CEO / Finance</span>
+                            <h4 class="text-lg font-bold"> <span data-i18n="team_member_1_name"></span></h4>
+                            <span class="text-sm font-medium text-gray-600 uppercase tracking-wider" data-i18n="team_member_1_role"></span>
                         </div>
                         <div class="flip-face flip-back shadow-lg">
-                            <p class="text-sm px-2" data-i18n="team_member_1_bio">Leader with finance and startup experience, focused on strategy and partnerships.</p>
+                            <p class="text-sm px-2" data-i18n="team_member_1_bio"></p>
                         </div>
                     </div>
                 </div>
@@ -524,11 +695,11 @@
                     <div class="flip-inner" data-card="2">
                         <div class="flip-face flip-front shadow-lg">
                             <div class="flip-img mb-4">B</div>
-                            <h4 class="text-lg font-bold"> <span data-i18n="team_member_2_name">Co-Founder</span></h4>
+                            <h4 class="text-lg font-bold"> <span data-i18n="team_member_2_name"></span></h4>
                             <span class="text-sm font-medium text-gray-600 uppercase tracking-wider" data-i18n="team_member_2_role">COO / Ops</span>
                         </div>
                         <div class="flip-face flip-back shadow-lg">
-                            <p class="text-sm px-2" data-i18n="team_member_2_bio">Operations leader experienced in scaling teams and programs across Africa.</p>
+                            <p class="text-sm px-2" data-i18n="team_member_2_bio"></p>
                         </div>
                     </div>
                 </div>
@@ -537,20 +708,20 @@
                     <div class="flip-inner" data-card="3">
                         <div class="flip-face flip-front shadow-lg">
                             <div class="flip-img mb-4">C</div>
-                            <h4 class="text-lg font-bold"> <span data-i18n="team_member_3_name">Co-Founder</span></h4>
+                            <h4 class="text-lg font-bold"> <span data-i18n="team_member_3_name"></span></h4>
                             <span class="text-sm font-medium text-gray-600 uppercase tracking-wider" data-i18n="team_member_3_role">CTO / Tech</span>
                         </div>
                         <div class="flip-face flip-back shadow-lg">
-                            <p class="text-sm px-2" data-i18n="team_member_3_bio">CTO with experience building scalable platforms and data systems.</p>
+                            <p class="text-sm px-2" data-i18n="team_member_3_bio"></p>
                         </div>
                     </div>
                 </div>
             </div>
             
             <!-- Partners Logos -->
-            <div class="mt-20 pt-10 border-t border-white/20">
-                <p class="font-display text-xs text-blue-300 uppercase tracking-widest mb-8 font-semibold" data-i18n="partners_badge">Soutenu par</p>
-                <div class="flex flex-wrap justify-center gap-10 opacity-60 hover:opacity-100 transition-all duration-500 font-display text-white">
+            <div class="mt-20 pt-10 border-t border-brand-blue/20">
+                <p class="font-display text-xs text-brand-blue uppercase tracking-widest mb-8 font-semibold" data-i18n="partners_badge">Soutenu par</p>
+                <div class="flex flex-wrap justify-center gap-10 opacity-60 hover:opacity-100 transition-all duration-500 font-display text-brand-blue">
                     <span class="text-xl font-bold">FINTECH HUB</span>
                     <span class="text-xl font-bold">IMPACT ALLIANCE</span>
                     <span class="text-xl font-bold">AFRICA TECH</span>
@@ -559,47 +730,42 @@
         </div>
     </section>
 
-    <!-- 7. Join Us (WHITE BG / BLUE TEXT) -->
-    <section id="join" class="py-24 bg-white reveal">
-        <div class="max-w-3xl mx-auto px-4 text-center">
-            <h2 class="font-display text-3xl md:text-4xl font-bold text-brand-blue mb-6" data-i18n="join_title">Rejoignez le mouvement</h2>
-            <p class="font-sans text-gray-600 mb-10 text-lg" data-i18n="join_text">
-                Soyez les premiers informés de nos avancées et participez à la phase de test.
-            </p>
+    <!-- Contact Form -->
+    <section id="contact" class="py-16 bg-brand-blue reveal">
+        <div class="max-w-3xl mx-auto px-4">
+            <h2 class="font-display text-2xl font-bold text-white mb-4">Contact & Collaboration</h2>
+            <p class="text-gray-200 mb-6">Get in touch and explore our opportunities for collaboration!</p>
 
-            <form class="max-w-md mx-auto flex flex-col sm:flex-row gap-3 mb-12" onsubmit="event.preventDefault(); alert('Merci !');">
-                <input type="email" placeholder="Email" class="flex-1 px-5 py-4 bg-gray-50 border border-gray-200 rounded focus:outline-none focus:border-brand-blue text-black shadow-sm font-sans">
-                <button class="px-8 py-4 bg-brand-blue text-white font-bold rounded hover:bg-blue-800 transition shadow-md font-display" data-i18n="join_btn">S'inscrire</button>
+            <form class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6" onsubmit="event.preventDefault(); alert('Thanks — we will get back to you!');">
+                <input name="first_name" placeholder="First name" class="px-4 py-3 border rounded" required>
+                <input name="last_name" placeholder="Surname" class="px-4 py-3 border rounded" required>
+                <input type="email" name="email" placeholder="Email" class="px-4 py-3 border rounded col-span-1 sm:col-span-2" required>
+                <input name="linkedin" placeholder="LinkedIn profile (URL)" class="px-4 py-3 border rounded col-span-1 sm:col-span-2">
+                <textarea name="message" placeholder="Message (optional)" class="px-4 py-3 border rounded col-span-1 sm:col-span-2" rows="4"></textarea>
+                <div class="col-span-1 sm:col-span-2 text-right">
+                    <button class="px-6 py-3 bg-white text-brand-blue rounded font-bold">Send</button>
+                </div>
             </form>
 
-            <div class="grid md:grid-cols-2 gap-8 text-left max-w-2xl mx-auto font-sans">
-                <div>
-                    <h4 class="font-display font-bold text-brand-blue mb-2" data-i18n="investor_title">Investisseurs / Fonds</h4>
-                    <p class="text-sm text-gray-500 mb-2" data-i18n="investor_text">Vous cherchez du deal flow qualifié ?</p>
-                </div>
-                <div>
-                    <h4 class="font-display font-bold text-brand-blue mb-2" data-i18n="partner_title">Partenaires / Presse</h4>
-                    <p class="text-sm text-gray-500 mb-2" data-i18n="partner_text">Construisons ensemble.</p>
-                </div>
+            <div class="text-sm text-gray-300">
+                <p>We typically respond within 3 business days. For investor inquiries mention "Investors" in the message.</p>
             </div>
         </div>
     </section>
 
+    <!-- Join section removed per request (Contact section kept) -->
+
     <!-- Footer -->
     <footer class="bg-gray-50 text-brand-blue py-12 text-sm border-t border-gray-200 font-sans">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
-            <div class="mb-4 md:mb-0 font-display">
-                <span class="text-black font-bold text-lg tracking-tight">be<span class="logo-ligature">ttt</span>er<span class="text-brand-blue">Funds</span></span>
-                <span class="mx-2 text-gray-300">|</span>
-                <span>Abidjan, Côte d'Ivoire.</span>
-            </div>
-                <div class="flex space-x-6">
+            <img src="assets/bettterfunds_main_logo.png" alt="bettterFunds logo: blue text reading bettterfunds with tagline Investment needs. Investors. Intermediaries." class="h-12 w-auto logo-ligature">
+            <div class="flex space-x-6">
                 <a href="#" class="hover:text-black transition" data-i18n="footer_legal">Mentions Légales</a>
                 <a href="#" class="hover:text-black transition" data-i18n="footer_privacy">Confidentialité</a>
             </div>
             <div class="text-gray-500">
                 &copy; 2025 bettterFunds Inc.
-            </div>
+            </div>  
             
         </div>
     </footer>
@@ -629,6 +795,29 @@
                 road_bot_2027: "2027",
                 // Nav
                 nav_why: "Pourquoi", nav_what: "Solution", nav_when: "Agenda", nav_impact: "Impact", nav_team: "Équipe", nav_join: "Rejoindre",
+                nav_problems: "Problèmes que nous visons",
+                nav_problems_item1: "PME prêtes à l'investissement",
+                nav_problems_item2: "Meilleurs fonds : plus transparents, compréhensibles et performants",
+                nav_problems_item3: "Un pipeline d'entreprises et projets prêts à l'investissement",
+                nav_forwho: "Pour qui ?",
+                nav_forwho_item1: "Pour ceux ayant des besoins d'investissement",
+                nav_forwho_item2: "Pour les intermédiaires",
+                nav_forwho_item3: "Pour les fonds et investisseurs",
+                nav_forwho_item4: "Pour les fonds de fonds",
+                nav_positioning: "Positionnement & approche",
+                nav_positioning_item1: "Nous engageons nos parties prenantes …",
+                nav_positioning_item2: "… sur la route vers une plateforme digitale",
+                nav_plan: "Notre plan",
+                nav_plan_item1: "Livre blanc",
+                nav_plan_item2: "Prototype et MVP",
+                nav_plan_item3: "Attirer des investisseurs et lever des fonds",
+                nav_plan_item4: "Go-to-market : Croissance, croissance, croissance",
+                nav_plan_item5: "Stratégie de sortie",
+                nav_story: "Notre histoire",
+                nav_story_item1: "Sören Bauer",
+                nav_story_item2: "Haoua Mamoudou",
+                nav_story_item3: "Mahamadou Hatchabi",
+                nav_join_cta: "Contact",
                 // Hero
                 hero_badge_future: "L'AVENIR DU FINANCEMENT",
                 hero_title_1: "Ne cherchez plus les fonds.",
@@ -638,7 +827,7 @@
                 hero_promise_2: "Fonds Thématiques Mondiaux.",
                 hero_badge_essence: "L'ESSENCE",
                 hero_subtitle: "bettterFunds construit l'infrastructure numérique de confiance qui aligne les besoins d'investissement, les investisseurs et les intermédiaires.",
-                cta_main: "Rejoindre la liste d'attente",
+                cta_main: "Nous contacter",
                 cta_secondary: "Découvrir",
                 launch_date: "LANCEMENT 25 FÉV 2026",
                 // Why
@@ -654,6 +843,51 @@
                 card_1_title: "Identification", card_1_text: "Une cartographie exhaustive des fonds thématiques (Climat, Agri, Genre) et de leurs critères précis.",
                 card_2_title: "Matching", card_2_text: "Un moteur intelligent qui connecte instantanément le bon projet au bon fonds, sans friction.",
                 card_3_title: "Préparation", card_3_text: "L'intégration des agences intermédiaires pour rendre les projets \"investor-ready\" avant le contact.",
+                // Positioning / Story translations
+                section_positioning_title: "Positionnement & approche",
+                section_positioning_sub: "Ce que nous faisons et comment nous nous positionnons",
+                section_plan_title: "Notre plan",
+                section_plan_sub: "État d'avancement",
+                section_story_title: "Notre histoire",
+                section_story_sub: "Pourquoi bettterFunds existe",
+                section_story_text: "De nombreux fonds thématiques sont mal expliqués et manquent d'efficacité en raison de critères opaques et d'informations d'éligibilité fragmentées. Cette constatation a conduit à la création de bettterFunds : rendre les fonds plus transparents, compréhensibles et performants.",
+
+                // Problems & ForWho subsections
+                problems_investment_title: "PME prêtes à l'investissement",
+                problems_investment_text: "Beaucoup de PME manquent des documents et de la structuration exigés par les fonds thématiques ; bettterFunds comble cet écart.",
+                problems_better_title: "Meilleurs fonds : transparence et performance",
+                problems_better_text: "De nombreux fonds thématiques ont des critères opaques — nous standardisons et clarifions l'éligibilité et les indicateurs d'impact.",
+                problems_pipeline_title: "Un pipeline de projets prêts à l'investissement",
+                problems_pipeline_text: "Créer un pipeline continu et de qualité de projets correspondant aux critères des fonds thématiques.",
+
+                // For who subsections
+                forwho_those_title: "Pour ceux ayant des besoins d'investissement",
+                forwho_those_text: "Startups et PME cherchant du capital de croissance peuvent trouver des fonds ciblés et des parcours de candidature clairs via bettterFunds.",
+                forwho_intermediaries_title: "Pour les intermédiaires",
+                forwho_intermediaries_text: "Faciliter la préparation du pipeline, la due diligence et les activités de rapprochement pour les porteurs de projets.",
+                forwho_funds_title: "Pour les fonds et investisseurs",
+                forwho_funds_text: "Découvrir des projets pré-qualifiés alignés sur votre stratégie thématique et vos objectifs d'impact.",
+                forwho_funds_of_funds_title: "Pour les fonds de fonds",
+                forwho_funds_of_funds_text: "Agrégation et routage efficace du capital vers des instruments thématiques spécialisés.",
+
+                // Positioning subsections
+                positioning_stakeholders_title: "Nous engageons nos parties prenantes",
+                positioning_stakeholders_text: "Nous impliquons gestionnaires de fonds, investisseurs et intermédiaires tôt pour aligner les incitations et les standards de données.",
+                positioning_journey_title: "Sur la route vers une plateforme digitale",
+                positioning_journey_text: "Notre feuille de route priorise la qualité des données, l'expérience utilisateur et les mécanismes de confiance pour scaler l'impact.",
+
+                // Plan subsections
+                plan_whitepaper_title: "Livre blanc",
+                plan_whitepaper_text: "Concept détaillé, hypothèses et modèle de gouvernance proposé sont documentés dans notre livre blanc.",
+                plan_prototype_title: "Prototype et MVP",
+                plan_prototype_text: "Construire et tester un produit minimal pour valider les workflows de matching et d'éligibilité.",
+                plan_fundraising_title: "Attirer des investisseurs et lever des fonds",
+                plan_fundraising_text: "Engager des investisseurs d'ancrage et des partenaires pour sécuriser le capital initial et les pilotes.",
+                plan_goto_title: "Go-to-market : Croissance",
+                plan_goto_text: "Étendre la plateforme en embarquant davantage d'intermédiaires, de fonds et de partenaires régionaux.",
+                plan_exit_title: "Stratégie de sortie",
+                plan_exit_text: "Explorer des partenariats stratégiques ou des modèles de marketplace pour assurer la pérennité.",
+
                 // When
                 roadmap_badge: "ROADMAP", roadmap_title: "État d'avancement",
                 step_1_title: "Conception", step_1_date: "FIN 2025", step_1_text: "Définition du modèle technique, architecture de la base de données et acquisition.",
@@ -707,7 +941,30 @@
                 road_bot_q3_2026: "Q3<br/>2026",
                 road_bot_q4_2026: "Q4<br/>2026",
                 road_bot_2027: "2027",
-                nav_why: "Why", nav_what: "Solution", nav_when: "Roadmap", nav_impact: "Impact", nav_team: "Team", nav_join: "Join Us",
+                nav_why: "Why", nav_what: "Solution", nav_when: "Roadmap", nav_impact: "Impact", nav_team: "Team", nav_join: "Contact",
+                nav_problems: "Problem(s) we aim to solve",
+                nav_problems_item1: "Investment-ready SME’s",
+                nav_problems_item2: "Better funds: more transparent, understandable & performing",
+                nav_problems_item3: "A pipeline of investment-ready companies and projects",
+                nav_forwho: "For who?",
+                nav_forwho_item1: "For those with investment needs",
+                nav_forwho_item2: "For intermediaries",
+                nav_forwho_item3: "For funds & investors",
+                nav_forwho_item4: "For funds of funds",
+                nav_positioning: "Positioning & approach",
+                nav_positioning_item1: "We engage our stakeholders …",
+                nav_positioning_item2: "… on the journey towards a digital platform",
+                nav_plan: "Our plan",
+                nav_plan_item1: "White paper",
+                nav_plan_item2: "Prototype and MVP",
+                nav_plan_item3: "Attracting investors and fundraising",
+                nav_plan_item4: "Go-to-market: Growth, growth, growth",
+                nav_plan_item5: "Exit strategy",
+                nav_story: "Our story",
+                nav_story_item1: "Sören Bauer",
+                nav_story_item2: "Haoua Mamoudou",
+                nav_story_item3: "Mahamadou Hatchabi",
+                nav_join_cta: "Contact",
                 hero_badge_future: "THE FUTURE OF FUNDING",
                 hero_title_1: "Stop searching for funds.",
                 hero_title_2: "Find the right partners.",
@@ -716,7 +973,7 @@
                 hero_promise_2: "Global Thematic Funds.",
                 hero_badge_essence: "THE ESSENCE",
                 hero_subtitle: "bettterFunds builds the trusted digital infrastructure aligning investment needs, investors, and intermediaries.",
-                cta_main: "Join the Waitlist",
+                cta_main: "Contact Us",
                 cta_secondary: "Learn More",
                 launch_date: "LAUNCH 25 FEB 2026",
                 why_badge: "THE CONTEXT",
@@ -730,6 +987,51 @@
                 card_1_title: "Identification", card_1_text: "Comprehensive mapping of thematic funds (Climate, Agri, Gender) and their precise criteria.",
                 card_2_title: "Matching", card_2_text: "An intelligent engine that instantly connects the right project to the right fund, without friction.",
                 card_3_title: "Readiness", card_3_text: "Integrating intermediary agencies to make projects 'investor-ready' before contact.",
+                // Positioning / Story translations
+                section_positioning_title: "Positioning & approach",
+                section_positioning_sub: "What we do & how we position",
+                section_plan_title: "Our plan",
+                section_plan_sub: "Progress Status",
+                section_story_title: "Our story",
+                section_story_sub: "Why bettterFunds exists",
+                section_story_text: "Many thematic funds are poorly explained and lack efficiency because of untransparent criteria and fragmented eligibility information. This recognition led to the creation of bettterFunds: to make funds more transparent, understandable and performing.",
+
+                // Problems & ForWho subsections
+                problems_investment_title: "Investment-ready SME’s",
+                problems_investment_text: "Many SMEs lack the documentation and structuring required by thematic funds; bettterFunds helps bridge this gap.",
+                problems_better_title: "Better funds: transparency & performance",
+                problems_better_text: "Many thematic funds have opaque selection criteria — we standardise and clarify eligibility and impact metrics.",
+                problems_pipeline_title: "A pipeline of investment-ready projects",
+                problems_pipeline_text: "Create a continuous, quality pipeline of projects that match thematic fund criteria.",
+
+                // For who subsections
+                forwho_those_title: "For those with investment needs",
+                forwho_those_text: "Startups and SMEs seeking growth capital can find targeted funds and clear application paths via bettterFunds.",
+                forwho_intermediaries_title: "For intermediaries",
+                forwho_intermediaries_text: "Facilitate pipeline preparation, due diligence and bridging activities for project sponsors.",
+                forwho_funds_title: "For funds & investors",
+                forwho_funds_text: "Discover pre-vetted projects aligned with your thematic strategy and impact objectives.",
+                forwho_funds_of_funds_title: "For funds of funds",
+                forwho_funds_of_funds_text: "Aggregate and route capital efficiently into specialised thematic instruments.",
+
+                // Positioning subsections
+                positioning_stakeholders_title: "We engage our stakeholders",
+                positioning_stakeholders_text: "We involve fund managers, investors and intermediaries early to align incentives and data standards.",
+                positioning_journey_title: "On the journey towards a digital platform",
+                positioning_journey_text: "Our roadmap prioritises data quality, user experience and trust mechanisms to scale impact.",
+
+                // Plan subsections
+                plan_whitepaper_title: "White paper",
+                plan_whitepaper_text: "Detailed concept, assumptions and proposed governance model are documented in our white paper.",
+                plan_prototype_title: "Prototype and MVP",
+                plan_prototype_text: "Build and test a minimal product to validate matching and eligibility workflows.",
+                plan_fundraising_title: "Attracting investors and fundraising",
+                plan_fundraising_text: "Engage anchor investors and partners to secure initial capital and pilot deployments.",
+                plan_goto_title: "Go-to-market: Growth",
+                plan_goto_text: "Scale the platform by onboarding more intermediaries, funds and regional partners.",
+                plan_exit_title: "Exit strategy",
+                plan_exit_text: "Explore strategic partnerships or marketplace models to ensure long-term sustainability.",
+
                 roadmap_badge: "ROADMAP", roadmap_title: "Progress Status",
                 step_1_title: "Concept", step_1_date: "LATE 2025", step_1_text: "Defining technical model, database architecture, and asset acquisition.",
                 step_2_title: "Structuring & R&D", step_2_date: "ONGOING - 2026", step_2_text: "Legal registration in Abidjan. Building the 'Data Lake' of thematic funds.",
@@ -779,6 +1081,29 @@
                 road_bot_q4_2026: "Q4<br/>2026",
                 road_bot_2027: "2027",
                 nav_why: "Warum", nav_what: "Lösung", nav_when: "Zeitplan", nav_impact: "Einfluss", nav_team: "Team", nav_join: "Beitreten",
+                nav_problems: "Probleme, die wir lösen wollen",
+                nav_problems_item1: "Investitionsbereite KMU",
+                nav_problems_item2: "Bessere Fonds: transparenter, verständlicher & leistungsfähiger",
+                nav_problems_item3: "Eine Pipeline investitionsbereiter Unternehmen und Projekte",
+                nav_forwho: "Für wen?",
+                nav_forwho_item1: "Für diejenigen mit Investitionsbedarf",
+                nav_forwho_item2: "Für Vermittler",
+                nav_forwho_item3: "Für Fonds & Investoren",
+                nav_forwho_item4: "Für Fund-of-Funds",
+                nav_positioning: "Positionierung & Ansatz",
+                nav_positioning_item1: "Wir binden unsere Stakeholder …",
+                nav_positioning_item2: "… auf dem Weg zu einer digitalen Plattform",
+                nav_plan: "Unser Plan",
+                nav_plan_item1: "Weißbuch",
+                nav_plan_item2: "Prototyp und MVP",
+                nav_plan_item3: "Investoren anziehen und Kapital beschaffen",
+                nav_plan_item4: "Go-to-market: Wachstum, Wachstum, Wachstum",
+                nav_plan_item5: "Exit-Strategie",
+                nav_story: "Unsere Geschichte",
+                nav_story_item1: "Sören Bauer",
+                nav_story_item2: "Haoua Mamoudou",
+                nav_story_item3: "Mahamadou Hatchabi",
+                nav_join_cta: "Beitreten",
                 hero_badge_future: "DIE ZUKUNFT DER FINANZIERUNG",
                 hero_title_1: "Suchen Sie kein Geld mehr.",
                 hero_title_2: "Finden Sie die richtigen Partner.",
@@ -787,7 +1112,7 @@
                 hero_promise_2: "Globalen Themenfonds.",
                 hero_badge_essence: "DIE ESSENZ",
                 hero_subtitle: "bettterFunds baut die vertrauenswürdige digitale Infrastruktur, die Investitionsbedarf, Investoren und Vermittler aufeinander abstimmt.",
-                cta_main: "Auf die Warteliste",
+                cta_main: "Kontaktieren Sie uns",
                 cta_secondary: "Mehr erfahren",
                 launch_date: "START 25 FEB 2026",
                 why_badge: "DER KONTEXT",
@@ -801,6 +1126,51 @@
                 card_1_title: "Identifikation", card_1_text: "Umfassende Kartierung von Themenfonds (Klima, Agri, Gender) und deren genauen Kriterien.",
                 card_2_title: "Matching", card_2_text: "Eine intelligente Engine, die sofort das richtige Projekt mit dem richtigen Fonds verbindet.",
                 card_3_title: "Vorbereitung", card_3_text: "Integration von Vermittlungsagenturen, um Projekte vor dem Kontakt 'investorenreif' zu machen.",
+                // Positioning / Story translations
+                section_positioning_title: "Positionierung & Ansatz",
+                section_positioning_sub: "Was wir tun & wie wir uns positionieren",
+                section_plan_title: "Unser Plan",
+                section_plan_sub: "Fortschrittsstatus",
+                section_story_title: "Unsere Geschichte",
+                section_story_sub: "Warum es bettterFunds gibt",
+                section_story_text: "Viele thematische Fonds sind schlecht erklärt und mangelhaft effizient aufgrund undurchsichtiger Kriterien und fragmentierter Informationen zur Förderfähigkeit. Diese Erkenntnis führte zur Gründung von bettterFunds: Fonds transparenter, verständlicher und leistungsfähiger machen.",
+
+                // Problems & ForWho subsections
+                problems_investment_title: "Investitionsbereite KMU",
+                problems_investment_text: "Viele KMU verfügen nicht über die Dokumentation und Strukturierung, die thematische Fonds verlangen; bettterFunds schließt diese Lücke.",
+                problems_better_title: "Bessere Fonds: Transparenz & Performance",
+                problems_better_text: "Viele thematische Fonds haben undurchsichtige Auswahlkriterien – wir standardisieren und klären die Förderfähigkeit und Impact-Kennzahlen.",
+                problems_pipeline_title: "Eine Pipeline investitionsbereiter Projekte",
+                problems_pipeline_text: "Aufbau einer kontinuierlichen, hochwertigen Pipeline von Projekten, die zu thematischen Fonds passen.",
+
+                // For who subsections
+                forwho_those_title: "Für diejenigen mit Investitionsbedarf",
+                forwho_those_text: "Startups und KMU, die Wachstumskapital suchen, finden hier zielgerichtete Fonds und klare Bewerbungswege.",
+                forwho_intermediaries_title: "Für Vermittler",
+                forwho_intermediaries_text: "Erleichterung der Pipeline-Vorbereitung, Due Diligence und Vermittlungsaktivitäten für Projektträger.",
+                forwho_funds_title: "Für Fonds & Investoren",
+                forwho_funds_text: "Finden Sie vorqualifizierte Projekte, die mit Ihrer thematischen Strategie und Impact-Zielen übereinstimmen.",
+                forwho_funds_of_funds_title: "Für Fund-of-Funds",
+                forwho_funds_of_funds_text: "Kapital effizient aggregieren und in spezialisierte thematische Instrumente leiten.",
+
+                // Positioning subsections
+                positioning_stakeholders_title: "Wir binden unsere Stakeholder",
+                positioning_stakeholders_text: "Wir binden Fondsmanager, Investoren und Vermittler frühzeitig ein, um Anreize und Datenstandards abzustimmen.",
+                positioning_journey_title: "Auf dem Weg zur digitalen Plattform",
+                positioning_journey_text: "Unsere Roadmap priorisiert Datenqualität, Nutzererlebnis und Vertrauensmechanismen, um Wirkung zu skalieren.",
+
+                // Plan subsections
+                plan_whitepaper_title: "Weißbuch",
+                plan_whitepaper_text: "Detailliertes Konzept, Annahmen und vorgeschlagenes Governance-Modell sind in unserem Weißbuch dokumentiert.",
+                plan_prototype_title: "Prototyp und MVP",
+                plan_prototype_text: "Aufbau und Test eines Minimalprodukts zur Validierung von Matching- und Eligibility-Workflows.",
+                plan_fundraising_title: "Investoren anziehen und Kapital beschaffen",
+                plan_fundraising_text: "Einbindung von Ankerinvestoren und Partnern zur Sicherung von Startkapital und Pilotprojekten.",
+                plan_goto_title: "Go-to-market: Wachstum",
+                plan_goto_text: "Skalierung der Plattform durch Onboarding weiterer Vermittler, Fonds und regionaler Partner.",
+                plan_exit_title: "Exit-Strategie",
+                plan_exit_text: "Erkundung strategischer Partnerschaften oder Marktplatzmodelle für langfristige Nachhaltigkeit.",
+
                 roadmap_badge: "ROADMAP", roadmap_title: "Fortschrittsstatus",
                 step_1_title: "Konzept", step_1_date: "ENDE 2025", step_1_text: "Definition des technischen Modells, Datenbankarchitektur und Akquise.",
                 step_2_title: "Strukturierung & F&E", step_2_date: "LAUFEND - 2026", step_2_text: "Rechtliche Registrierung in Abidjan. Aufbau des 'Data Lake' der Themenfonds.",
@@ -850,6 +1220,29 @@
                 road_bot_q4_2026: "Q4<br/>2026",
                 road_bot_2027: "2027",
                 nav_why: "لماذا", nav_what: "الحل", nav_when: "الخارطة", nav_impact: "الأثر", nav_team: "الفريق", nav_join: "انضم إلينا",
+                nav_problems: "المشاكل التي نهدف لحلها",
+                nav_problems_item1: "الشركات الصغيرة والمتوسطة الجاهزة للاستثمار",
+                nav_problems_item2: "صناديق أفضل: أكثر شفافية وفهماً وأداءً",
+                nav_problems_item3: "قائمة مشاريع وشركات جاهزة للاستثمار",
+                nav_forwho: "لمن؟",
+                nav_forwho_item1: "لمن لديهم احتياجات استثمار",
+                nav_forwho_item2: "للوُسَطاء",
+                nav_forwho_item3: "للمستثمرين/الصناديق",
+                nav_forwho_item4: "لصناديق الصناديق",
+                nav_positioning: "الموقع والنهج",
+                nav_positioning_item1: "نشارك أصحاب المصلحة …",
+                nav_positioning_item2: "… في المسار نحو منصة رقمية",
+                nav_plan: "خطة العمل",
+                nav_plan_item1: "الورقة البيضاء",
+                nav_plan_item2: "النموذج الأولي وMVP",
+                nav_plan_item3: "جذب المستثمرين وجمع التمويل",
+                nav_plan_item4: "الخروج إلى السوق: نمو، نمو، نمو",
+                nav_plan_item5: "استراتيجية الخروج",
+                nav_story: "قصتنا",
+                nav_story_item1: "Sören Bauer",
+                nav_story_item2: "Haoua Mamoudou",
+                nav_story_item3: "Mahamadou Hatchabi",
+                nav_join_cta: "انضم إلينا",
                 hero_badge_future: "مستقبل التمويل",
                 hero_title_1: "توقف عن البحث عن التمويل.",
                 hero_title_2: "اعثر على الشركاء المناسبين.",
@@ -858,7 +1251,7 @@
                 hero_promise_2: "الصناديق العالمية المتخصصة.",
                 hero_badge_essence: "الجوهر",
                 hero_subtitle: "تقوم bettterFunds ببناء البنية التحتية الرقمية الموثوقة التي توائم بين احتياجات الاستثمار والمستثمرين والوسطاء.",
-                cta_main: "انضم إلى قائمة الانتظار",
+                cta_main: "اتصل بنا",
                 cta_secondary: "اكتشف المزيد",
                 launch_date: "إطلاق النسخة التجريبية 25 فبراير 2026",
                 why_badge: "السياق",
@@ -872,6 +1265,51 @@
                 card_1_title: "تحديد الهوية", card_1_text: "خريطة شاملة للصناديق المتخصصة (المناخ، الزراعة، الجنسين) ومعاييرها الدقيقة.",
                 card_2_title: "المطابقة", card_2_text: "محرك ذكي يربط المشروع المناسب بالصندوق المناسب فوراً وبدون تعقيدات.",
                 card_3_title: "التحضير", card_3_text: "دمج الوكالات الوسيطة لجعل المشاريع 'جاهزة للاستثمار' قبل الاتصال.",
+                // Positioning / Story translations
+                section_positioning_title: "الموقع والنهج",
+                section_positioning_sub: "ما نقوم به وكيف نحدد موقعنا",
+                section_plan_title: "خطة العمل",
+                section_plan_sub: "حالة التقدم",
+                section_story_title: "قصتنا",
+                section_story_sub: "لماذا وُجدت bettterFunds",
+                section_story_text: "العديد من الصناديق المتخصصة سيئة الشرح وتفتقر إلى الكفاءة بسبب معايير غير شفافة ومعلومات أهلية مجزأة. أدت هذه الملاحظة إلى إنشاء bettterFunds: لجعل الصناديق أكثر شفافية وفهماً وأعلى أداءً.",
+
+                // Problems & ForWho subsections
+                problems_investment_title: "الشركات الصغيرة والمتوسطة الجاهزة للاستثمار",
+                problems_investment_text: "تفتقر العديد من الشركات الصغيرة والمتوسطة إلى الوثائق والبنية المطلوبة من قبل الصناديق المتخصصة؛ تساعد bettterFunds في سد هذه الفجوة.",
+                problems_better_title: "صناديق أفضل: الشفافية والأداء",
+                problems_better_text: "تمتلك العديد من الصناديق المتخصصة معايير اختيار غير شفافة — نحن نوحد ونوضح الأهلية ومقاييس الأثر.",
+                problems_pipeline_title: "قائمة مشاريع جاهزة للاستثمار",
+                problems_pipeline_text: "إنشاء قائمة مستمرة وعالية الجودة من المشاريع التي تتوافق مع معايير الصناديق المتخصصة.",
+
+                // For who subsections
+                forwho_those_title: "لمن لديهم احتياجات استثمار",
+                forwho_those_text: "يمكن للشركات الناشئة والصغيرة والمتوسطة التي تبحث عن رأس مال نمو العثور على صناديق مستهدفة ومسارات تقديم واضحة عبر bettterFunds.",
+                forwho_intermediaries_title: "للوُسَطاء",
+                forwho_intermediaries_text: "تسهيل تحضير القوائم، الفحص النافي للجهالة وأنشطة الربط لمالكي المشاريع.",
+                forwho_funds_title: "للمستثمرين/الصناديق",
+                forwho_funds_text: "اكتشف مشاريع ما قبل التأهيل تتماشى مع استراتيجيتك الموضوعية وأهداف الأثر.",
+                forwho_funds_of_funds_title: "لصناديق الصناديق",
+                forwho_funds_of_funds_text: "تجميع وتوجيه رأس المال بكفاءة إلى أدوات موضوعية متخصصة.",
+
+                // Positioning subsections
+                positioning_stakeholders_title: "نشارك أصحاب المصلحة",
+                positioning_stakeholders_text: "نشرك مديري الصناديق والمستثمرين والوسطاء مبكرًا لمواءمة الحوافز ومعايير البيانات.",
+                positioning_journey_title: "في المسار نحو منصة رقمية",
+                positioning_journey_text: "تُعطي خارطة طريقنا الأولوية لجودة البيانات وتجربة المستخدم وآليات الثقة لتوسيع التأثير.",
+
+                // Plan subsections
+                plan_whitepaper_title: "الورقة البيضاء",
+                plan_whitepaper_text: "المنهجية المفصلة والافتراضات ونموذج الحوكمة المقترح موثقة في ورقتنا البيضاء.",
+                plan_prototype_title: "النموذج الأولي وMVP",
+                plan_prototype_text: "بناء واختبار منتج أدنى للتحقق من صحة آليات المطابقة والأهلية.",
+                plan_fundraising_title: "جذب المستثمرين وجمع التمويل",
+                plan_fundraising_text: "إشراك مستثمرين مرساة وشركاء لتأمين رأس المال الأولي ونشر التجارب التجريبية.",
+                plan_goto_title: "الخروج إلى السوق: نمو",
+                plan_goto_text: "توسيع المنصة من خلال انضمام المزيد من الوسطاء والصناديق والشركاء الإقليميين.",
+                plan_exit_title: "استراتيجية الخروج",
+                plan_exit_text: "استكشاف شراكات استراتيجية أو نماذج السوق لضمان الاستدامة طويلة الأجل.",
+
                 roadmap_badge: "خارطة الطريق", roadmap_title: "حالة التقدم",
                 step_1_title: "المفهوم", step_1_date: "أواخر 2025", step_1_text: "تعريف النموذج التقني، وهندسة قاعدة البيانات والاستحواذ.",
                 step_2_title: "الهيكلة والبحث", step_2_date: "جاري - 2026", step_2_text: "التسجيل القانوني في أبيدجان. بناء 'بحيرة البيانات' للصناديق المتخصصة.",
