@@ -120,6 +120,47 @@
             display: block;
         }
 
+        /* Roadmap timeline arrows */
+        .timeline-row { display:flex; gap:1rem; padding:0.25rem 0; flex-wrap:wrap; justify-content:center; -webkit-overflow-scrolling:touch; }
+        .arrow { position:relative; padding:0.6rem 0.9rem; border-radius:0.375rem; white-space:normal; color: white; font-weight:600; transform:translateY(12px); opacity:0; animation:slideUp 520ms cubic-bezier(.2,.9,.3,1) forwards; animation-delay: calc(var(--i,0) * 80ms); flex:1 0 150px; min-width:120px; text-align:center; box-sizing:border-box; }
+        .arrow::after { content: ''; position:absolute; right:-12px; top:50%; transform:translateY(-50%); width:0; height:0; border-top:14px solid transparent; border-bottom:14px solid transparent; border-left:12px solid currentColor; }
+        .arrow.last::after { display:none; }
+        /* connector: draws a small pointing shape on the left to visually join arrows when wrapped */
+        .arrow:not(:first-child)::before { content: ''; position:absolute; left:-18px; top:50%; transform:translateY(-50%); width:14px; height:14px; background: currentColor; clip-path: polygon(100% 0, 0 50%, 100% 100%); }
+
+        /* RTL support: flip timeline direction and arrows */
+        html[dir="rtl"] .timeline-row { direction: rtl; flex-direction: row-reverse; }
+        html[dir="rtl"] .arrow::after { right: auto; left:-12px; transform:translateY(-50%) rotate(180deg); border-left-color: transparent; border-right:12px solid currentColor; }
+        html[dir="rtl"] .arrow:not(:first-child)::before { left: auto; right:-18px; clip-path: polygon(0 0, 100% 50%, 0 100%); }
+
+        @keyframes slideUp {
+            from { transform:translateY(12px); opacity:0; }
+            to { transform:translateY(0); opacity:1; }
+        }
+
+        /* Flip card for team members */
+        .flip-card { perspective: 1000px; }
+        .flip-inner { position: relative; width: 18rem; height: 22rem; transition: transform 0.6s; transform-style: preserve-3d; }
+        .flip-card:hover .flip-inner, .flip-inner.is-flipped { transform: rotateY(180deg); }
+        .flip-face { position: absolute; inset:0; backface-visibility: hidden; border-radius: 0.75rem; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; padding:1rem; box-sizing:border-box; }
+        .flip-front { background: white; color: #022c6b; }
+        .flip-back { background: #0b2540; color: white; transform: rotateY(180deg); display:block; }
+        .flip-img { width:10rem; height:10rem; border-radius:9999px; background:white; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:1.75rem; color:#022c6b; }
+        /* Ring + shadow for photos */
+        .flip-face img, .flip-img {
+            width:10rem; height:10rem; border-radius:9999px; object-fit:cover; margin-bottom:1rem;
+            box-shadow: 0 10px 30px rgba(2,44,107,0.18), 0 0 0 6px rgba(0,0,255,0.06);
+            transition: transform 220ms ease, box-shadow 220ms ease;
+        }
+        .flip-face img:hover, .flip-img:hover { transform: translateY(-4px) scale(1.03); box-shadow: 0 18px 40px rgba(2,44,107,0.22), 0 0 0 8px rgba(0,0,255,0.09); }
+        .flip-back p { font-size:0.95rem; line-height:1.4; padding:0.25rem 0; margin-top:0.5rem; max-height: calc(100% - 6.5rem); overflow:auto; }
+        @media (max-width:767px) {
+            .flip-inner { width: 14rem; height: 20rem; }
+            .flip-img { width:8rem; height:8rem; }
+            .flip-face img { width:8rem; height:8rem; }
+            .flip-back p { font-size:0.95rem; }
+        }
+
         /* Logo Ligature Trick (Optional polish) */
         .logo-ligature {
             letter-spacing: -2px; /* Pull 't's closer together */
@@ -379,38 +420,31 @@
     </section>
 
     <!-- 4. When (BLUE BG / WHITE TEXT) -->
-    <section id="when" class="py-24 bg-brand-blue reveal">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="font-display text-sm font-bold text-blue-200 uppercase tracking-widest mb-3" data-i18n="roadmap_badge">Roadmap</h2>
-                <h3 class="font-display text-3xl font-bold text-white" data-i18n="roadmap_title">État d'avancement</h3>
+    <section id="when" class="py-24 bg-white reveal">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10">
+                <h2 class="font-display text-sm font-bold text-gray-400 uppercase tracking-widest mb-3" data-i18n="roadmap_badge">Roadmap</h2>
+                <h3 class="font-display text-3xl font-bold text-brand-blue" data-i18n="roadmap_title">État d'avancement</h3>
             </div>
 
-            <div class="relative border-l-2 border-white/20 ml-6 space-y-12">
-                <!-- Item 1 -->
-                <div class="relative pl-12 group">
-                    <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-white border-4 border-brand-blue shadow transition-transform group-hover:scale-125"></div>
-                    <h4 class="font-display text-lg font-bold text-white" data-i18n="step_1_title">Conception</h4>
-                    <span class="font-sans text-xs font-semibold text-blue-300 uppercase tracking-wide block mb-2" data-i18n="step_1_date">Fin 2025</span>
-                    <p class="font-sans text-blue-100" data-i18n="step_1_text">Définition du modèle technique, architecture de la base de données et acquisition.</p>
-                </div>
+            <!-- Top Row: Green Milestones -->
+            <div class="timeline-row mb-6">
+                <div class="arrow bg-green-600" style="--i:0"><span data-i18n="road_top_1_title"></span><br/><span class="font-normal text-sm" data-i18n="road_top_1_sub"></span></div>
+                <div class="arrow bg-green-600" style="--i:1"><span data-i18n="road_top_2_title"></span><br/><span class="font-normal text-sm" data-i18n="road_top_2_sub"></span></div>
+                <div class="arrow bg-green-600" style="--i:2"><span data-i18n="road_top_3_title"></span><br/><span class="font-normal text-sm" data-i18n="road_top_3_sub"></span></div>
+                <div class="arrow bg-green-600" style="--i:3"><span data-i18n="road_top_4_title"></span></div>
+                <div class="arrow bg-green-600" style="--i:4"><span data-i18n="road_top_5_title"></span><br/><span class="font-normal text-sm" data-i18n="road_top_5_sub"></span></div>
+                <div class="arrow bg-green-600 last" style="--i:5"><span data-i18n="road_top_6_title"></span></div>
+            </div>
 
-                <!-- Item 2 (Active) -->
-                <div class="relative pl-12 group">
-                    <!-- White Indicator on Blue -->
-                    <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-white border-4 border-brand-blue shadow ring-4 ring-white/20 transition-transform group-hover:scale-125"></div>
-                    <h4 class="font-display text-lg font-bold text-white" data-i18n="step_2_title">Structuration & R&D</h4>
-                    <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-white text-brand-blue uppercase tracking-wide mb-2" data-i18n="step_2_date">En cours - 2026</span>
-                    <p class="font-sans text-blue-100" data-i18n="step_2_text">Enregistrement légal à Abidjan. Construction du "Data Lake" des fonds thématiques.</p>
-                </div>
-
-                <!-- Item 3 -->
-                <div class="relative pl-12 opacity-50">
-                    <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-white/50 border-4 border-brand-blue"></div>
-                    <h4 class="font-display text-lg font-bold text-blue-300" data-i18n="step_3_title">Lancement Beta</h4>
-                    <span class="font-sans text-xs font-semibold text-blue-400 uppercase tracking-wide block mb-2" data-i18n="step_3_date">25 FÉV 2026</span>
-                    <p class="font-sans text-blue-200" data-i18n="step_3_text">Ouverture de la plateforme aux premiers investisseurs et porteurs de projets.</p>
-                </div>
+            <!-- Bottom Row: Quarters -->
+            <div class="timeline-row">
+                <div class="arrow bg-blue-900" style="--i:0"><span data-i18n="road_bot_q4_2025"></span></div>
+                <div class="arrow bg-blue-900" style="--i:1"><span data-i18n="road_bot_q1_2026"></span></div>
+                <div class="arrow bg-blue-900" style="--i:2"><span data-i18n="road_bot_q2_2026"></span></div>
+                <div class="arrow bg-blue-900" style="--i:3"><span data-i18n="road_bot_q3_2026"></span></div>
+                <div class="arrow bg-blue-900" style="--i:4"><span data-i18n="road_bot_q4_2026"></span></div>
+                <div class="arrow bg-blue-900 last" style="--i:5"><span data-i18n="road_bot_2027"></span></div>
             </div>
         </div>
     </section>
@@ -471,35 +505,46 @@
                 Un collectif d'entrepreneurs et d'experts tech basés à Abidjan, unis par une mission commune.
             </p>
 
-            <div class="flex flex-wrap justify-center items-start gap-12 font-display">
-                
-                <!-- 1. CEO (Left) -->
-                <div class="flex flex-col items-center group">
-                    <div class="w-40 h-40 rounded-full bg-white border-2 border-white group-hover:scale-105 transition-all duration-300 flex items-center justify-center mb-4 overflow-hidden relative shadow-lg">
-                        <span class="text-3xl font-bold text-brand-blue">CEO</span>
+            <div class="flex flex-wrap justify-center items-start gap-8 font-display">
+                <!-- Team Flip Cards -->
+                <div class="flip-card">
+                    <div class="flip-inner" data-card="1">
+                        <div class="flip-face flip-front shadow-lg">
+                            <img src="assets/Sören.jpg" alt="Sören Bauer" class="w-24 h-24 rounded-full object-cover mb-4">
+                            <h4 class="text-lg font-bold"> <span data-i18n="team_member_1_name">Founder</span></h4>
+                            <span class="text-sm font-medium text-gray-600 uppercase tracking-wider" data-i18n="team_member_1_role">CEO / Finance</span>
+                        </div>
+                        <div class="flip-face flip-back shadow-lg">
+                            <p class="text-sm px-2" data-i18n="team_member_1_bio">Leader with finance and startup experience, focused on strategy and partnerships.</p>
+                        </div>
                     </div>
-                    <h4 class="text-lg font-bold text-white">Founder</h4>
-                    <span class="text-sm font-medium text-blue-200 uppercase tracking-wider">CEO / Finance</span>
                 </div>
 
-                <!-- 2. COO (Center) -->
-                <div class="flex flex-col items-center group">
-                    <div class="w-40 h-40 rounded-full bg-white border-2 border-white group-hover:scale-105 transition-all duration-300 flex items-center justify-center mb-4 overflow-hidden relative shadow-lg">
-                        <span class="text-3xl font-bold text-brand-blue">COO</span>
+                <div class="flip-card">
+                    <div class="flip-inner" data-card="2">
+                        <div class="flip-face flip-front shadow-lg">
+                            <div class="flip-img mb-4">B</div>
+                            <h4 class="text-lg font-bold"> <span data-i18n="team_member_2_name">Co-Founder</span></h4>
+                            <span class="text-sm font-medium text-gray-600 uppercase tracking-wider" data-i18n="team_member_2_role">COO / Ops</span>
+                        </div>
+                        <div class="flip-face flip-back shadow-lg">
+                            <p class="text-sm px-2" data-i18n="team_member_2_bio">Operations leader experienced in scaling teams and programs across Africa.</p>
+                        </div>
                     </div>
-                    <h4 class="text-lg font-bold text-white">Co-Founder</h4>
-                    <span class="text-sm font-medium text-blue-200 uppercase tracking-wider">COO / Ops</span>
                 </div>
 
-                <!-- 3. CTO (Right) -->
-                <div class="flex flex-col items-center group">
-                    <div class="w-40 h-40 rounded-full bg-white border-2 border-white group-hover:scale-105 transition-all duration-300 flex items-center justify-center mb-4 overflow-hidden relative shadow-lg">
-                        <span class="text-3xl font-bold text-brand-blue">CTO</span>
+                <div class="flip-card">
+                    <div class="flip-inner" data-card="3">
+                        <div class="flip-face flip-front shadow-lg">
+                            <div class="flip-img mb-4">C</div>
+                            <h4 class="text-lg font-bold"> <span data-i18n="team_member_3_name">Co-Founder</span></h4>
+                            <span class="text-sm font-medium text-gray-600 uppercase tracking-wider" data-i18n="team_member_3_role">CTO / Tech</span>
+                        </div>
+                        <div class="flip-face flip-back shadow-lg">
+                            <p class="text-sm px-2" data-i18n="team_member_3_bio">CTO with experience building scalable platforms and data systems.</p>
+                        </div>
                     </div>
-                    <h4 class="text-lg font-bold text-white">Co-Founder</h4>
-                    <span class="text-sm font-medium text-blue-200 uppercase tracking-wider">CTO / Tech</span>
                 </div>
-
             </div>
             
             <!-- Partners Logos -->
@@ -564,6 +609,24 @@
         // --- TRANSLATIONS CONFIGURATION ---
         const translations = {
             fr: {
+                // Roadmap top row
+                road_top_1_title: "Développement du modèle économique",
+                road_top_1_sub: "Équipe / Enregistrement",
+                road_top_2_title: "Site en ligne",
+                road_top_2_sub: "Livre blanc 1",
+                road_top_3_title: "Site en ligne",
+                road_top_3_sub: "Livre blanc 2",
+                road_top_4_title: "Livre blanc 3",
+                road_top_5_title: "Maquette / Prototype",
+                road_top_5_sub: "Pitching ou investisseur providentiel",
+                road_top_6_title: "Lancement micro-marché",
+                // Roadmap bottom row
+                road_bot_q4_2025: "Q4<br/>2025",
+                road_bot_q1_2026: "Q1<br/>2026",
+                road_bot_q2_2026: "Q2<br/>2026",
+                road_bot_q3_2026: "Q3<br/>2026",
+                road_bot_q4_2026: "Q4<br/>2026",
+                road_bot_2027: "2027",
                 // Nav
                 nav_why: "Pourquoi", nav_what: "Solution", nav_when: "Agenda", nav_impact: "Impact", nav_team: "Équipe", nav_join: "Rejoindre",
                 // Hero
@@ -607,6 +670,16 @@
                 team_badge: "L'ÉQUIPE", team_title: "Qui porte le projet ?",
                 team_text: "Un collectif d'entrepreneurs et d'experts tech basés à Abidjan, unis par une mission commune.",
                 partners_badge: "SOUTENU PAR",
+                // Team members (FR)
+                team_member_1_name: "Sören Bauer",
+                team_member_1_role: "CEO",
+                team_member_1_bio: "Sören possède plus de 25 ans d'expérience en tant que stratège en communication, travaillant principalement avec des banques de développement et des organisations internationales. Il a développé des marques, des stratégies de communication et dirigé des campagnes globales et régionales — notamment en Afrique — sur des thématiques environnementales telles que la biodiversité, le climat, l'eau, les énergies renouvelables et l'économie circulaire. L'idée de bettterFunds est née pendant son travail à la Banque africaine de développement sur la communication pour des fonds thématiques.",
+                team_member_2_name: "Haoua Mamoudou",
+                team_member_2_role: "COO",
+                team_member_2_bio: "Haoua est fondatrice et directrice générale de Focus Ventures où elle accompagne des entreprises internationales dans leur implantation et incorporation en Afrique de l'Ouest.",
+                team_member_3_name: "Mahamadou Hatchabi",
+                team_member_3_role: "CTO",
+                team_member_3_bio: "Mahamadou est un entrepreneur technologique et acteur de l'écosystème animé par une conviction : le capital doit circuler là où l'impact est créé. Avec plus de 15 ans d'expérience en transformation digitale en Afrique et en Europe, il a conçu et monté des plateformes qui connectent les acteurs, libèrent des opportunités et instaurent la confiance. Chez bettterFunds, il combine vision stratégique et expertise technique pour architecturer une infrastructure sécurisée et scalable qui rapproche fondateurs, investisseurs et intermédiaires.",
                 // Join
                 join_title: "Rejoignez le mouvement", join_text: "Soyez les premiers informés de nos avancées et participez à la phase de test.",
                 join_btn: "S'inscrire",
@@ -616,6 +689,24 @@
                 footer_legal: "Mentions Légales", footer_privacy: "Confidentialité"
             },
             en: {
+                // Roadmap top row
+                road_top_1_title: "Business model development",
+                road_top_1_sub: "Team / Registration",
+                road_top_2_title: "Website going live",
+                road_top_2_sub: "White paper 1",
+                road_top_3_title: "Website going live",
+                road_top_3_sub: "White paper 2",
+                road_top_4_title: "White Paper 3",
+                road_top_5_title: "Mock-Up / Prototype",
+                road_top_5_sub: "Pitching or angel investor",
+                road_top_6_title: "Micro-market Launch",
+                // Roadmap bottom row
+                road_bot_q4_2025: "Q4<br/>2025",
+                road_bot_q1_2026: "Q1<br/>2026",
+                road_bot_q2_2026: "Q2<br/>2026",
+                road_bot_q3_2026: "Q3<br/>2026",
+                road_bot_q4_2026: "Q4<br/>2026",
+                road_bot_2027: "2027",
                 nav_why: "Why", nav_what: "Solution", nav_when: "Roadmap", nav_impact: "Impact", nav_team: "Team", nav_join: "Join Us",
                 hero_badge_future: "THE FUTURE OF FUNDING",
                 hero_title_1: "Stop searching for funds.",
@@ -652,6 +743,16 @@
                 team_badge: "THE TEAM", team_title: "Who is behind this?",
                 team_text: "A collective of entrepreneurs and tech experts based in Abidjan, united by a common mission.",
                 partners_badge: "SUPPORTED BY",
+                // Team members (EN)
+                team_member_1_name: "Sören Bauer",
+                team_member_1_role: "CEO",
+                team_member_1_bio: "Sören has over 25 years of experience as a communication strategist, mainly working with development banks and international organisations. He has developed brands, communication strategies and led global and regional campaigns — particularly in Africa — focused on environment topics such as biodiversity, climate change, water, renewable energy, circular economy and deforestation. The idea for bettterFunds emerged while he worked with the African Development Bank on outreach for thematic funds.",
+                team_member_2_name: "Haoua Mamoudou",
+                team_member_2_role: "COO",
+                team_member_2_bio: "Haoua is the founder and Managing Director of Focus Ventures where she supports global companies in their establishment and incorporation in West Africa.",
+                team_member_3_name: "Mahamadou Hatchabi",
+                team_member_3_role: "CTO",
+                team_member_3_bio: "Mahamadou is a technology entrepreneur and ecosystem builder driven by one core belief: capital should flow where impact is created. With over 15 years of experience leading digital transformation initiatives across Africa and Europe, he has built and scaled technology platforms designed to connect people, unlock opportunities, and structure trust within complex ecosystems. At bettterFunds, he combines strategic vision with deep technical expertise to architect a secure, scalable infrastructure that bridges founders, investors, and intermediaries.",
                 join_title: "Join the Movement", join_text: "Be the first to know about our progress and participate in the testing phase.",
                 join_btn: "Sign Up",
                 investor_title: "Investors / Funds", investor_text: "Looking for qualified deal flow?",
@@ -659,6 +760,24 @@
                 footer_legal: "Legal Notice", footer_privacy: "Privacy Policy"
             },
             de: {
+                // Roadmap top row
+                road_top_1_title: "Geschäftsmodellentwicklung",
+                road_top_1_sub: "Team / Registrierung",
+                road_top_2_title: "Website online",
+                road_top_2_sub: "Weißbuch 1",
+                road_top_3_title: "Website online",
+                road_top_3_sub: "Weißbuch 2",
+                road_top_4_title: "Weißbuch 3",
+                road_top_5_title: "Mock-Up / Prototyp",
+                road_top_5_sub: "Pitching oder Angel-Investor",
+                road_top_6_title: "Micro-Market Start",
+                // Roadmap bottom row
+                road_bot_q4_2025: "Q4<br/>2025",
+                road_bot_q1_2026: "Q1<br/>2026",
+                road_bot_q2_2026: "Q2<br/>2026",
+                road_bot_q3_2026: "Q3<br/>2026",
+                road_bot_q4_2026: "Q4<br/>2026",
+                road_bot_2027: "2027",
                 nav_why: "Warum", nav_what: "Lösung", nav_when: "Zeitplan", nav_impact: "Einfluss", nav_team: "Team", nav_join: "Beitreten",
                 hero_badge_future: "DIE ZUKUNFT DER FINANZIERUNG",
                 hero_title_1: "Suchen Sie kein Geld mehr.",
@@ -695,6 +814,16 @@
                 team_badge: "DAS TEAM", team_title: "Wer steckt dahinter?",
                 team_text: "Ein Kollektiv von Unternehmern und Tech-Experten mit Sitz in Abidjan, vereint durch eine gemeinsame Mission.",
                 partners_badge: "UNTERSTÜTZT VON",
+                // Team members (DE)
+                team_member_1_name: "Sören Bauer",
+                team_member_1_role: "CEO",
+                team_member_1_bio: "Sören verfügt über mehr als 25 Jahre Erfahrung als Kommunikationsstratege, vor allem mit Entwicklungsbanken und internationalen Organisationen. Er hat Marken entwickelt, Kommunikationsstrategien erstellt und globale sowie regionale Kampagnen geleitet – insbesondere in Afrika – zu Umweltthemen wie Biodiversität, Klimawandel, Wasser, erneuerbare Energien und Kreislaufwirtschaft. Die Idee zu bettterFunds entstand während seiner Arbeit für die Afrikanische Entwicklungsbank im Bereich Outreach für thematische Fonds.",
+                team_member_2_name: "Haoua Mamoudou",
+                team_member_2_role: "COO",
+                team_member_2_bio: "Haoua ist Gründerin und Geschäftsführerin von Focus Ventures und unterstützt internationale Unternehmen bei ihrer Niederlassung und Gründung in Westafrika.",
+                team_member_3_name: "Mahamadou Hatchabi",
+                team_member_3_role: "CTO",
+                team_member_3_bio: "Mahamadou ist Technologieunternehmer und Ökosystembauer mit über 15 Jahren Erfahrung in der digitalen Transformation in Afrika und Europa. Er hat Plattformen aufgebaut und skaliert, die Menschen verbinden und Vertrauen in komplexen Ökosystemen schaffen.",
                 join_title: "Schließen Sie sich an", join_text: "Seien Sie die Ersten, die von unseren Fortschritten erfahren und an der Testphase teilnehmen.",
                 join_btn: "Anmelden",
                 investor_title: "Investoren / Fonds", investor_text: "Suchen Sie qualifizierten Dealflow?",
@@ -702,6 +831,24 @@
                 footer_legal: "Impressum", footer_privacy: "Datenschutz"
             },
             ar: {
+                // Roadmap top row
+                road_top_1_title: "تطوير نموذج الأعمال",
+                road_top_1_sub: "الفريق / التسجيل",
+                road_top_2_title: "إطلاق الموقع",
+                road_top_2_sub: "الورقة البيضاء 1",
+                road_top_3_title: "إطلاق الموقع",
+                road_top_3_sub: "الورقة البيضاء 2",
+                road_top_4_title: "الورقة البيضاء 3",
+                road_top_5_title: "نموذج أولي / ماك أب",
+                road_top_5_sub: "العرض أو مستثمر ملاك",
+                road_top_6_title: "إطلاق السوق الجزئي",
+                // Roadmap bottom row
+                road_bot_q4_2025: "Q4<br/>2025",
+                road_bot_q1_2026: "Q1<br/>2026",
+                road_bot_q2_2026: "Q2<br/>2026",
+                road_bot_q3_2026: "Q3<br/>2026",
+                road_bot_q4_2026: "Q4<br/>2026",
+                road_bot_2027: "2027",
                 nav_why: "لماذا", nav_what: "الحل", nav_when: "الخارطة", nav_impact: "الأثر", nav_team: "الفريق", nav_join: "انضم إلينا",
                 hero_badge_future: "مستقبل التمويل",
                 hero_title_1: "توقف عن البحث عن التمويل.",
@@ -738,6 +885,16 @@
                 team_badge: "الفريق", team_title: "من يقف وراء هذا؟",
                 team_text: "مجموعة من رواد الأعمال وخبراء التكنولوجيا في أبيدجان، يجمعهم مهمة مشتركة.",
                 partners_badge: "بدعم من",
+                // Team members (AR)
+                team_member_1_name: "Sören Bauer",
+                team_member_1_role: "CEO",
+                team_member_1_bio: "قائد ذو خبرة في المالية والشركات الناشئة، يركز على الاستراتيجية والشراكات.",
+                team_member_2_name: "Haoua Mamoudou",
+                team_member_2_role: "COO",
+                team_member_2_bio: "قائد عمليات ذو خبرة في توسيع الفرق والبرامج عبر أفريقيا.",
+                team_member_3_name: "Mahamadou Hatchabi",
+                team_member_3_role: "CTO",
+                team_member_3_bio: "CTO ذو خبرة في بناء منصات وأنظمة بيانات قابلة للتوسع.",
                 join_title: "انضم للحركة", join_text: "كن أول من يعرف عن تقدمنا وشارك في مرحلة الاختبار.",
                 join_btn: "سجل الآن",
                 investor_title: "مستثمرون / صناديق", investor_text: "هل تبحث عن تدفق صفقات مؤهل؟",
@@ -752,12 +909,12 @@
             elements.forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (translations[lang] && translations[lang][key]) {
-                    // Preserve HTML tags inside if any (simple replace)
-                    if (el.children.length > 0 && key.includes('hero_title')) {
-                         // Special handling for hero title split could be better but innerText is safer for now
-                         el.innerText = translations[lang][key]; 
+                    const val = translations[lang][key];
+                    // If the translation contains HTML (e.g. <br/>), set as innerHTML; otherwise use innerText
+                    if (typeof val === 'string' && val.indexOf('<') !== -1) {
+                        el.innerHTML = val;
                     } else {
-                        el.innerText = translations[lang][key];
+                        el.innerText = val;
                     }
                 }
             });
@@ -849,6 +1006,13 @@
         }
         document.querySelectorAll('.reveal').forEach((section) => {
             observer.observe(section);
+        });
+
+        // Team card flip behavior for touch devices: toggle 'is-flipped' on click
+        document.querySelectorAll('.flip-inner').forEach(card => {
+            card.addEventListener('click', function(e) {
+                this.classList.toggle('is-flipped');
+            });
         });
     </script>
 
