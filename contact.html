@@ -264,5 +264,170 @@
             </div>
         </div>
     </footer>
+
+    <!-- Scripts -->
+    <script>
+        // --- TRANSLATIONS CONFIGURATION ---
+        const translations = {
+            fr: {
+                nav_problems: "Problèmes que<br/>nous visons",
+                nav_problems_item1: "PME prêtes à l'investissement",
+                nav_problems_item2: "Meilleurs fonds : plus transparents, compréhensibles et performants",
+                nav_problems_item3: "Un pipeline d'entreprises et projets prêts à l'investissement",
+                nav_forwho: "Pour<br/>qui ?",
+                nav_forwho_item1: "Pour ceux ayant des besoins d'investissement",
+                nav_forwho_item2: "Pour les intermédiaires",
+                nav_forwho_item3: "Pour les fonds et investisseurs",
+                nav_forwho_item4: "Pour les fonds de fonds",
+                nav_positioning: "Positionnement &<br/>approche",
+                nav_positioning_item1: "Nous engageons nos parties prenantes …",
+                nav_positioning_item2: "… sur la route vers une plateforme digitale",
+                nav_plan: "Notre<br/>plan",
+                nav_plan_item1: "Livre blanc",
+                nav_plan_item2: "Prototype et MVP",
+                nav_plan_item3: "Attirer des investisseurs et lever des fonds",
+                nav_plan_item4: "Go-to-market : Croissance, croissance, croissance",
+                nav_plan_item5: "Stratégie de sortie",
+                nav_story: "Notre<br/>histoire",
+                nav_story_item1: "Sören Bauer",
+                nav_story_item2: "Haoua Mamoudou",
+                nav_story_item3: "Mahamadou Hatchabi",
+                nav_join_cta: "Contact"
+            },
+            en: {
+                nav_problems: "Problems<br/>we aim to solve",
+                nav_problems_item1: "Investment-ready SME's",
+                nav_problems_item2: "Better funds: more transparent, understandable & performing",
+                nav_problems_item3: "A pipeline of investment-ready companies and projects",
+                nav_forwho: "Who<br/>we serve",
+                nav_forwho_item1: "For those with investment needs",
+                nav_forwho_item2: "For intermediaries",
+                nav_forwho_item3: "For funds & investors",
+                nav_forwho_item4: "For funds of funds",
+                nav_positioning: "Positioning &<br/>Business model",
+                nav_positioning_item1: "We engage our stakeholders …",
+                nav_positioning_item2: "… on the journey towards a digital platform",
+                nav_plan: "Our<br/>plan",
+                nav_plan_item1: "White paper",
+                nav_plan_item2: "Prototype and MVP",
+                nav_plan_item3: "Attracting investors and fundraising",
+                nav_plan_item4: "Go-to-market: Growth, growth, growth",
+                nav_plan_item5: "Exit strategy",
+                nav_story: "Our<br/>story",
+                nav_story_item1: "Sören Bauer",
+                nav_story_item2: "Haoua Mamoudou",
+                nav_story_item3: "Mahamadou Hatchabi",
+                nav_join_cta: "Contact"
+            },
+            de: {
+                nav_problems: "Probleme, die wir<br/>lösen wollen",
+                nav_problems_item1: "Investitionsbereite KMU",
+                nav_problems_item2: "Bessere Fonds: transparenter, verständlicher & leistungsfähiger",
+                nav_problems_item3: "Eine Pipeline investitionsbereiter Unternehmen und Projekte",
+                nav_forwho: "Für<br/>wen?",
+                nav_forwho_item1: "Für diejenigen mit Investitionsbedarf",
+                nav_forwho_item2: "Für Vermittler",
+                nav_forwho_item3: "Für Fonds & Investoren",
+                nav_forwho_item4: "Für Fund-of-Funds",
+                nav_positioning: "Positionierung &<br/>Ansatz",
+                nav_positioning_item1: "Wir binden unsere Stakeholder …",
+                nav_positioning_item2: "… auf dem Weg zu einer digitalen Plattform",
+                nav_plan: "Unser<br/>Plan",
+                nav_plan_item1: "Weißbuch",
+                nav_plan_item2: "Prototyp und MVP",
+                nav_plan_item3: "Investoren anziehen und Kapital beschaffen",
+                nav_plan_item4: "Go-to-market: Wachstum, Wachstum, Wachstum",
+                nav_plan_item5: "Exit-Strategie",
+                nav_story: "Unsere<br/>Geschichte",
+                nav_story_item1: "Sören Bauer",
+                nav_story_item2: "Haoua Mamoudou",
+                nav_story_item3: "Mahamadou Hatchabi",
+                nav_join_cta: "Beitreten"
+            },
+            ar: {
+                nav_problems: "المشاكل التي<br/>نهدف لحلها",
+                nav_problems_item1: "الشركات الصغيرة والمتوسطة الجاهزة للاستثمار",
+                nav_problems_item2: "صناديق أفضل: أكثر شفافية وفهماً وأداءً",
+                nav_problems_item3: "قائمة مشاريع وشركات جاهزة للاستثمار",
+                nav_forwho: "لمن<br/>؟",
+                nav_forwho_item1: "لمن لديهم احتياجات استثمار",
+                nav_forwho_item2: "للوُسَطاء",
+                nav_forwho_item3: "للمستثمرين/الصناديق",
+                nav_forwho_item4: "لصناديق الصناديق",
+                nav_positioning: "الموقع<br/>والنهج",
+                nav_positioning_item1: "نشارك أصحاب المصلحة …",
+                nav_positioning_item2: "… في المسار نحو منصة رقمية",
+                nav_plan: "خطة<br/>العمل",
+                nav_plan_item1: "الورقة البيضاء",
+                nav_plan_item2: "النموذج الأولي وMVP",
+                nav_plan_item3: "جذب المستثمرين وجمع التمويل",
+                nav_plan_item4: "الخروج إلى السوق: نمو، نمو، نمو",
+                nav_plan_item5: "استراتيجية الخروج",
+                nav_story: "قصتنا",
+                nav_story_item1: "Sören Bauer",
+                nav_story_item2: "Haoua Mamoudou",
+                nav_story_item3: "Mahamadou Hatchabi",
+                nav_join_cta: "انضم إلينا"
+            }
+        };
+
+        function changeLanguage(lang) {
+            // 1. Update Text
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    const val = translations[lang][key];
+                    // If the translation contains HTML (e.g. <br/>), set as innerHTML; otherwise use innerText
+                    if (typeof val === 'string' && val.indexOf('<') !== -1) {
+                        el.innerHTML = val;
+                    } else {
+                        el.innerText = val;
+                    }
+                }
+            });
+
+            // 2. Handle Direction (RTL/LTR)
+            const html = document.documentElement;
+            if (lang === 'ar') {
+                html.setAttribute('dir', 'rtl');
+            } else {
+                html.setAttribute('dir', 'ltr');
+            }
+
+            // 3. Update active state in UI
+            document.getElementById('current-lang').innerText = lang.toUpperCase();
+            
+            // Mobile button update
+            const mobileBtn = document.getElementById('mobile-lang-btn');
+            if(mobileBtn) mobileBtn.innerText = lang.toUpperCase();
+        }
+
+        // Simple Mobile Cycle
+        const langs = ['fr', 'en', 'de', 'ar'];
+        let currentLangIdx = 0;
+        function cycleLanguage() {
+            currentLangIdx = (currentLangIdx + 1) % langs.length;
+            changeLanguage(langs[currentLangIdx]);
+        }
+
+        // Mobile Menu
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        if(btn) {
+            btn.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+            });
+        }
+
+        // Set default language to English on load and align cycle index
+        try {
+            changeLanguage('en');
+            const idx = langs.indexOf('en');
+            if (idx >= 0) currentLangIdx = idx;
+        } catch (e) {
+            console.warn('Language init failed', e);
+        }
+    </script>
 </body>
 </html>
